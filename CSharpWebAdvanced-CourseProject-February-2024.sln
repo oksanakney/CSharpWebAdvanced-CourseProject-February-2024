@@ -3,17 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NebulaNewsSystem.Web", "NebulaNewsSystem.Web\NebulaNewsSystem.Web.csproj", "{1DB9A8F5-2EA3-4CF0-AE9B-3A99C4E150A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NebulaNewsSystem.Web", "NebulaNewsSystem.Web\NebulaNewsSystem.Web.csproj", "{1DB9A8F5-2EA3-4CF0-AE9B-3A99C4E150A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NebulaNewsSystem.Common", "NebulaNewsSystem.Common\NebulaNewsSystem.Common.csproj", "{0AC29488-2F65-4AD4-A2EA-002A4A204A0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NebulaNewsSystem.Common", "NebulaNewsSystem.Common\NebulaNewsSystem.Common.csproj", "{0AC29488-2F65-4AD4-A2EA-002A4A204A0F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{59443C6A-328F-41EA-9B77-9EBE935ABC85}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{8F7B8DB5-5D82-4F7E-A0FA-1644DDD0D7E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NebulaNewsSystem.Data", "NebulaNewsSystem.Data\NebulaNewsSystem.Data.csproj", "{DFEAB296-6224-41B0-9C28-004AF3E613AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NebulaNewsSystem.Data", "NebulaNewsSystem.Data\NebulaNewsSystem.Data.csproj", "{DFEAB296-6224-41B0-9C28-004AF3E613AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NebulaNewsSystem.Data.Models", "NebulaNewsSystem.Data.Models\NebulaNewsSystem.Data.Models.csproj", "{70E4FBE9-FF4A-4273-A196-2789B0D59628}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NebulaNewsSystem.Data.Models", "NebulaNewsSystem.Data.Models\NebulaNewsSystem.Data.Models.csproj", "{70E4FBE9-FF4A-4273-A196-2789B0D59628}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NebulaNewsSystem.Web.ViewModels", "NebulaNewsSystem.Web.ViewModels\NebulaNewsSystem.Web.ViewModels.csproj", "{6274744A-AA9D-4175-ABBE-D98961F42659}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +39,10 @@ Global
 		{70E4FBE9-FF4A-4273-A196-2789B0D59628}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70E4FBE9-FF4A-4273-A196-2789B0D59628}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70E4FBE9-FF4A-4273-A196-2789B0D59628}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6274744A-AA9D-4175-ABBE-D98961F42659}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6274744A-AA9D-4175-ABBE-D98961F42659}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6274744A-AA9D-4175-ABBE-D98961F42659}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6274744A-AA9D-4175-ABBE-D98961F42659}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,6 +51,7 @@ Global
 		{1DB9A8F5-2EA3-4CF0-AE9B-3A99C4E150A9} = {59443C6A-328F-41EA-9B77-9EBE935ABC85}
 		{DFEAB296-6224-41B0-9C28-004AF3E613AF} = {8F7B8DB5-5D82-4F7E-A0FA-1644DDD0D7E7}
 		{70E4FBE9-FF4A-4273-A196-2789B0D59628} = {8F7B8DB5-5D82-4F7E-A0FA-1644DDD0D7E7}
+		{6274744A-AA9D-4175-ABBE-D98961F42659} = {59443C6A-328F-41EA-9B77-9EBE935ABC85}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3783F55C-DB5A-4A97-AC8E-4DD03D9972B0}
