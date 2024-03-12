@@ -1,16 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
+using System.ComponentModel.DataAnnotations.Schema;
 using static NebulaNewsSystem.Common.EntityValidationConstants.Article;
 
 namespace NebulaNewsSystem.Data.Models
 {
     public class Article
-    {
-        public Article()
-        {
-            this.Comments = new List<Comment>();
-        }
-
+    {       
         [Key]
         public Guid ArticleId { get; set; }
 
@@ -30,10 +25,13 @@ namespace NebulaNewsSystem.Data.Models
 
         public int CategoryId { get; set; }
 
+        [ForeignKey(nameof(CategoryId))]
         public virtual Category Category { get; set; } = null!;
 
         public Guid AuthorId { get; set; }
+
+        [ForeignKey(nameof(AuthorId))]
         public virtual Author Author { get; set; } = null!;
-        List<Comment> Comments { get; set; }
+        public virtual List<Comment>? Comments { get; set; }
     }
 }

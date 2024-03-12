@@ -10,6 +10,7 @@ namespace NebulaNewsSystem.Web.Data
         public NebulaNewsSystemDbContext(DbContextOptions<NebulaNewsSystemDbContext> options)
             : base(options)
         {
+            
         }
     }
 }
