@@ -7,7 +7,7 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 string connectionString = 
     builder.Configuration.GetConnectionString("DefaultConnection");
 
-builder.Services.AddDbContext<NebulaNewsSystemDbContext>(options =>
+builder.Services.AddDbContext<NebulaNewsDbContext>(options =>
     options.UseSqlServer(connectionString));
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options =>
@@ -15,7 +15,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
     options.SignIn.RequireConfirmedAccount = true;
 })
     
-    .AddEntityFrameworkStores<NebulaNewsSystemDbContext>();
+    .AddEntityFrameworkStores<NebulaNewsDbContext>();
 
 builder.Services.AddControllersWithViews();
 

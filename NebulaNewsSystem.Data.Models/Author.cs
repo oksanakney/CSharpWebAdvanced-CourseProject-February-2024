@@ -15,17 +15,11 @@ namespace NebulaNewsSystem.Data.Models
         [Key]
         public Guid Id { get; set; }
 
+
+
         [Required]
         [RegularExpression(PhoneNumberRegEx)]
         public string PhoneNumber { get; set; } = null!;
-
-        [Required]
-        public string UserId  { get; set; }
-
-        [ForeignKey(nameof(UserId))]
-        public virtual IdentityUser User { get; set; } = null!;
-
-        public List<Article> Articles { get; set; } = null!;
-        public List<Comment>? Comments { get; set; }
+        public virtual ICollection<Article> Articles { get; set; }
     }
 }

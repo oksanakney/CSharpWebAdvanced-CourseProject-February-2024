@@ -20,10 +20,10 @@ namespace NebulaNewsSystem.Data.Models
         public virtual Article Article { get; set; } = null!;
 
         [Required]
-        public Guid UserId { get; set; }
+        public string? CommenterId { get; set; }
 
-        [ForeignKey(nameof(UserId))]
-        public virtual IdentityUser User { get; set; } = null!;
+        [ForeignKey(nameof(CommenterId))]
+        public virtual IdentityUser? Commenter { get; set; }
 
         //public bool IsAnonymous { get; set; }
         //public string IPAddress { get; set; }
