@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NebulaNewsSystem.Common\NebulaNewsSystem.Common.csproj" />
+    <ProjectReference Include="..\NebulaNewsSystem.Data.Models\NebulaNewsSystem.Data.Models.csproj" />
   </ItemGroup>
 
 </Project>

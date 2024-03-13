@@ -20,7 +20,7 @@ namespace NebulaNewsSystem.Data.Models
         public string PhoneNumber { get; set; } = null!;
 
         [Required]
-        public Guid UserId  { get; set; }
+        public string UserId  { get; set; }
 
         [ForeignKey(nameof(UserId))]
         public virtual IdentityUser User { get; set; } = null!;

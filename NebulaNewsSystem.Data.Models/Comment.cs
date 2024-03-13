@@ -14,7 +14,7 @@ namespace NebulaNewsSystem.Data.Models
         public DateTime CreationDate { get; set; }
         //public int Likes { get; set; }
         //public int Dislikes { get; set; }
-        public int ArticleId { get; set; }
+        public Guid ArticleId { get; set; }
 
         [ForeignKey(nameof(ArticleId))]
         public virtual Article Article { get; set; } = null!;
