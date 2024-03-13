@@ -15,8 +15,6 @@ namespace NebulaNewsSystem.Data.Models
         [Key]
         public Guid Id { get; set; }
 
-
-
         [Required]
         [RegularExpression(PhoneNumberRegEx)]
         public string PhoneNumber { get; set; } = null!;
