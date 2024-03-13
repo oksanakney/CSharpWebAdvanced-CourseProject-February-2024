@@ -18,5 +18,10 @@
 
             public const int ImageUrlMaxLength = 2048;
         }
+
+        public static class Author
+        {
+            public const string PhoneNumberRegEx = "^\\+\\d{12}$";
+        }
     }
 }
