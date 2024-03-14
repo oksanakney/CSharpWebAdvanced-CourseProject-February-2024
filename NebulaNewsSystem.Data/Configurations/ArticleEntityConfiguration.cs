@@ -7,6 +7,10 @@ namespace NebulaNewsSystem.Data.Models.Configuration
         public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Article> builder)
         {
             builder
+                .Property(a => a.PublicationDate)
+                .HasDefaultValue(DateTime.UtcNow);
+
+            builder
                .HasOne(ar => ar.Category)
                .WithMany(c => c.Articles)
                .HasForeignKey(ar => ar.CategoryId)
@@ -16,7 +20,8 @@ namespace NebulaNewsSystem.Data.Models.Configuration
                 .HasOne(ar => ar.Author)
                 .WithMany(au => au.Articles)
                 .HasForeignKey(x => x.AuthorId)
-                .OnDelete(DeleteBehavior.Restrict);            
+                .OnDelete(DeleteBehavior.Restrict);   
+
         }       
         
     }
