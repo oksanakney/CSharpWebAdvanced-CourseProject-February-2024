@@ -17,7 +17,16 @@ namespace NebulaNewsSystem.Data.Models
 
         [Required]
         [RegularExpression(PhoneNumberRegEx)]
-        public string PhoneNumber { get; set; } = null!;
+        public string PhoneNumber { get; set; } = null!;       
+
+        [Required]
+        [DataType(DataType.EmailAddress)]
+        [EmailAddress]
+        public string Email { get; set; } = null!;
+
+        public string? ReaderId { get; set; }        
+        public virtual IdentityUser? Reader { get; set; }
+
         public virtual ICollection<Article> Articles { get; set; }
     }
 }

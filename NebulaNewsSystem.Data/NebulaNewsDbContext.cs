@@ -34,7 +34,7 @@ namespace NebulaNewsSystem.Web.Data
             builder.Entity<Comment>()
                 .HasOne(c => c.Article)
                 .WithMany(ar => ar.Comments)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Restrict);          
 
             base.OnModelCreating(builder);
         }
