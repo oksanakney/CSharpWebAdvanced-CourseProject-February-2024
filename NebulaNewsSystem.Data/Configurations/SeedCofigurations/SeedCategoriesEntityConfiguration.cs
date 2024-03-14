@@ -1,14 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using NebulaNewsSystem.Data.Models;
 
-namespace NebulaNewsSystem.Data.Models.Configuration
+namespace NebulaNewsSystem.Data.Configurations.SeedCofiguration
 {
     //TODO: Prove with internal
-    public class CategoryEntityConfiguration : IEntityTypeConfiguration<Category>
+    public class SeedCategoriesEntityConfiguration : IEntityTypeConfiguration<Category>
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
-            builder.HasData(this.GenerateCategories());
+            builder.HasData(GenerateCategories());
         }
 
         private Category[] GenerateCategories()

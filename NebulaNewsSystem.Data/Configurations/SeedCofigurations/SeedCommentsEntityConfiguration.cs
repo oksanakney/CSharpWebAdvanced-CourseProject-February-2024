@@ -1,17 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using NebulaNewsSystem.Data.Models;
 
-namespace NebulaNewsSystem.Data.Models.Configuration
+namespace NebulaNewsSystem.Data.Configurations.SeedCofiguration
 {
-    public class CommentEntityConfiguration : IEntityTypeConfiguration<Comment>
+    public class SeedCommentsEntityConfiguration : IEntityTypeConfiguration<Comment>
     {
         public void Configure(EntityTypeBuilder<Comment> builder)
         {
-            builder
-               .HasOne(c => c.Article)
-               .WithMany(ar => ar.Comments)
-               .OnDelete(DeleteBehavior.Restrict);            
-
             builder.HasData(this.GenerateComments());
         }
 
@@ -27,7 +23,7 @@ namespace NebulaNewsSystem.Data.Models.Configuration
                 Content = "Dobre e taka, triabva da se vkara malko disciplina v gimnazijata",
                 CreationDate = DateTime.Now,
                 ArticleId = Guid.Parse("49cde94c-3f90-4f95-8e91-a751aa2b7af4"),
-                CommenterId = "247929cd-14da-4c78-bcc7-92fb93e300a1"                
+                CommenterId = "247929cd-14da-4c78-bcc7-92fb93e300a1"
             };
             comments.Add(comment);
 
