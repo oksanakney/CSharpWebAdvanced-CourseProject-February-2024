@@ -1,19 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NebulaNewsSystem.Services.Data.Interfaces;
 using NebulaNewsSystem.Web.Models;
+using NebulaNewsSystem.Web.ViewModels.Home;
 using System.Diagnostics;
 
 namespace NebulaNewsSystem.Web.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController()
+        private readonly IArticleService articleService;
+        public HomeController(IArticleService articleService)
         {
-            
+            this.articleService = articleService;
         }
 
-        public IActionResult Index()
+        // Izdarpvam poslednite tri articles
+        public async Task<IActionResult> Index()
         {
-            return View();
+            IEnumerable<IndexViewModel> viewModel
+                = await this.articleService.LastThreeArticlesAsync();
+            return View(viewModel);
         }        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

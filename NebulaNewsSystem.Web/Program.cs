@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using NebulaNewsSystem.Services.Data.Interfaces;
 using NebulaNewsSystem.Web.Data;
+using NebulaNewsSystem.Web.Infrastructure.Extensions;
+
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -22,9 +25,10 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
         builder.Configuration.GetValue<bool>("Identity:Password:RequireNonAlphanumeric");
     options.Password.RequiredLength =
         builder.Configuration.GetValue<int>("Identity:Password:RequiredLength");
-})
-    
-    .AddEntityFrameworkStores<NebulaNewsDbContext>();
+})    
+ .AddEntityFrameworkStores<NebulaNewsDbContext>();
+
+builder.Services.AddApplicationServices(typeof(IArticleService));
 
 builder.Services.AddControllersWithViews();
 
