@@ -8,7 +8,7 @@ namespace NebulaNewsSystem.Data.Models
     public class Article
     {       
         [Key]
-        public Guid ArticleId { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         [MaxLength(TitleMaxLength)]
