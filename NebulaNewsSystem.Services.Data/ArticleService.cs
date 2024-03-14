@@ -1,4 +1,5 @@
-﻿using NebulaNewsSystem.Services.Data.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using NebulaNewsSystem.Services.Data.Interfaces;
 using NebulaNewsSystem.Web.Data;
 using NebulaNewsSystem.Web.ViewModels.Home;
 
@@ -18,7 +19,19 @@ namespace NebulaNewsSystem.Services.Data
         }
         public async Task<IEnumerable<IndexViewModel>> LastThreeArticlesAsync()
         {
-            throw new NotImplementedException();
+            IEnumerable<IndexViewModel> lastThreeArticles = await this.dbContext
+                .Articles
+                .OrderByDescending(ar => ar.PublicationDate)
+                .Take(3)
+                .Select(ar => new IndexViewModel()
+                {
+                    Id = ar.Id.ToString(),
+                    Title = ar.Title,
+                    ImageUrl = ar.ImageUrl
+                })
+                .ToArrayAsync();
+
+            return lastThreeArticles;
         }
     }
 }
