@@ -260,7 +260,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Articles");
+                    b.ToTable("Articles", (string)null);
                 });
 
             modelBuilder.Entity("NebulaNewsSystem.Data.Models.Author", b =>
@@ -284,7 +284,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
 
                     b.HasIndex("ReaderId");
 
-                    b.ToTable("Authors");
+                    b.ToTable("Authors", (string)null);
                 });
 
             modelBuilder.Entity("NebulaNewsSystem.Data.Models.Category", b =>
@@ -302,7 +302,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("NebulaNewsSystem.Data.Models.Comment", b =>
@@ -330,7 +330,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
 
                     b.HasIndex("CommenterId");
 
-                    b.ToTable("Comment");
+                    b.ToTable("Comment", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
