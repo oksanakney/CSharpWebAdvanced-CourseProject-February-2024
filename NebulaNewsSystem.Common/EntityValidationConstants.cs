@@ -11,7 +11,7 @@
         public static class Article 
         {
             public const int TitleMinLength = 5;
-            public const int TitleMaxLength = 40;
+            public const int TitleMaxLength = 100;
 
             public const int ContentMinLength = 150;
             public const int ContentMaxLength = 2000;

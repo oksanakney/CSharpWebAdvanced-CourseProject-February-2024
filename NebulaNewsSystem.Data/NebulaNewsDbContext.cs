@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using NebulaNewsSystem.Data.Configurations.SeedCofiguration;
 using NebulaNewsSystem.Data.Models;
+using NebulaNewsSystem.Data.Models.Configuration;
 using System.Reflection;
 
 
@@ -24,16 +25,20 @@ namespace NebulaNewsSystem.Web.Data
         public DbSet<Category> Categories { get; set; } = null!;
 
 
-        // TODO: TRY TO REMOVE THIS TO Article, cooment Enity Config
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.EnableSensitiveDataLogging();
+            base.OnConfiguring(optionsBuilder);
+        }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            Assembly configAssembly = Assembly.GetAssembly(typeof(NebulaNewsDbContext)) ?? 
-                                      Assembly.GetExecutingAssembly();
-            builder.ApplyConfigurationsFromAssembly(configAssembly);
+            //Assembly configAssembly = Assembly.GetAssembly(typeof(NebulaNewsDbContext)) ??
+            //                          Assembly.GetExecutingAssembly();
+            //builder.ApplyConfigurationsFromAssembly(configAssembly);
 
-            builder.ApplyConfiguration(new SeedArticlesEntityConfiguration());
-            builder.ApplyConfiguration(new SeedCategoriesEntityConfiguration());
-            builder.ApplyConfiguration(new SeedCommentsEntityConfiguration());
+            builder.ApplyConfiguration(new ArticleEntityConfiguration());           
+            builder.ApplyConfiguration(new CommentEntityConfiguration());
 
             if (this.seedDb)
             {

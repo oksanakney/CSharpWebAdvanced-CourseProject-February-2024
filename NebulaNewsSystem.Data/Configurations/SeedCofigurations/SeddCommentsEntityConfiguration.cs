@@ -7,7 +7,7 @@ namespace NebulaNewsSystem.Data.Configurations.SeedCofiguration
     public class SeedCommentsEntityConfiguration : IEntityTypeConfiguration<Comment>
     {
         public void Configure(EntityTypeBuilder<Comment> builder)
-        {
+        {            
             builder.HasData(this.GenerateComments());
         }
 
@@ -32,7 +32,7 @@ namespace NebulaNewsSystem.Data.Configurations.SeedCofiguration
                 CommentId = Guid.Parse("1ce4973f-a458-4777-ac31-9032bd11f426"),
                 Content = "emi za tova se praviat tolkova katastrofi, triabva da se vzemat merki",
                 CreationDate = DateTime.Now,
-                ArticleId = Guid.Parse("7b8c02c7-1960-4bc8-a230-2255b5e6ee65"),
+                ArticleId = Guid.Parse("550f78bf-9c45-4fa1-9a1e-4af3a5192be6"),
                 CommenterId = "20cd7080-3221-4b5e-96c9-f6ebd93555de"
             };
             comments.Add(comment);

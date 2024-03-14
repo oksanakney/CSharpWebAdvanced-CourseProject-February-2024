@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using NebulaNewsSystem.Data.Models;
+using System;
 
 namespace NebulaNewsSystem.Data.Configurations.SeedCofiguration
 {
@@ -21,7 +22,7 @@ namespace NebulaNewsSystem.Data.Configurations.SeedCofiguration
 
             article = new Article()
             {
-                ArticleId = Guid.Parse("7b8c02c7-1960-4bc8-a230-2255b5e6ee65"),
+                ArticleId = Guid.Parse("550f78bf-9c45-4fa1-9a1e-4af3a5192be6"),
                 Title = "A 17-year-old who drove a Mercedes both without a license and with fake license plates arrested",
                 Content = "A 17-year-old unlicensed driver of a Mercedes was detained last night by Dupnitsa's policemen. They carried out the inspection in the area of Sapareva Banya, and also found that the inspected car had registration plates issued for another vehicle. A quick police investigation was initiated in the Dupnitsa Intelligence Department, the prosecutor's office was notified.",
                 ImageUrl = "https://i.id24.bg/i/1616547.jpg",
@@ -44,19 +45,21 @@ namespace NebulaNewsSystem.Data.Configurations.SeedCofiguration
                 CategoryId = 10,
                 AuthorId = Guid.Parse("439455A8-590B-4FD3-A3F6-5CF16729DBB2")
             };
+            articles.Add(article);
 
             string publicationDate3 = "12.03.2024 23:00";
 
             article = new Article()
             {
                 ArticleId = Guid.Parse("3c74cdaa-71b0-4789-89e0-93c72fd2e8a9"),
-                Title = "The municipal council of Dupnitsa meets because of the mineral water in Bistritsa, the price for the drilling hit BGN 990,768 with an annex from August",
+                Title = "The municipal council of Dupnitsa meets because of the mineral water in Bistritsa",
                 Content = "The transformation of the mineral water borehole in the village of Bistrica into an object of primary importance for the municipality will be the subject of debate at an extraordinary session in Dupnitsa. The report was entered by the councilor from \"Voice of the People\" Gichka Mihailova. We recall that she would alarm that the firm involved in the study was considering a withdrawal.",
                 ImageUrl = "https://4vlast-bg.com/wp-content/uploads/2023/12/403389284_682223740702741_5157933701577735441_n.jpg",
                 PublicationDate = DateTime.ParseExact(publicationDate3, "dd.MM.yyyy HH:mm", null),
                 CategoryId = 1,
                 AuthorId = Guid.Parse("439455A8-590B-4FD3-A3F6-5CF16729DBB2")
             };
+            articles.Add(article);
 
             return articles.ToArray();
         }
