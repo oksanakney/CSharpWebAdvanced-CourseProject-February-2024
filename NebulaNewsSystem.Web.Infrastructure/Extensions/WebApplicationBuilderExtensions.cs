@@ -22,12 +22,12 @@ namespace NebulaNewsSystem.Web.Infrastructure.Extensions
                 throw new InvalidOperationException("Invalid service type provided!");
             }
 
-            Type[] serviceTypes = servicEAssembly
+            Type[] implementationTypes = servicEAssembly
                 .GetTypes()
                 .Where(t => t.Name.EndsWith("Service") && !t.IsInterface)
                 .ToArray();
 
-            foreach (Type implementationType in serviceTypes)
+            foreach (Type implementationType in implementationTypes)
             {
                 Type? interfaceType = implementationType
                     .GetInterface($"I{implementationType.Name}");

@@ -15,7 +15,7 @@ namespace NebulaNewsSystem.Services.Data
         {
             bool result = await this.dbContext
                 .Authors
-                .AnyAsync(au => au.Id.ToString() == userId);
+                .AnyAsync(au => au.ReaderId == userId);
 
             return result;
         }

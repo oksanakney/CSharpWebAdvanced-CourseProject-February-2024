@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using NebulaNewsSystem.Services.Data.Interfaces;
 using NebulaNewsSystem.Web.Infrastructure.Extensions;
+using static NebulaNewsSystem.Common.NotificationMessagesConstants;
 
 namespace NebulaNewsSystem.Web.Controllers
 {
@@ -23,7 +24,9 @@ namespace NebulaNewsSystem.Web.Controllers
             bool isAuthor = await this.authorService.AuthorExistsByReaderIdAsync(userId);
             if (isAuthor) 
             {
-                return this.BadRequest();
+                TempData[ErrorMessage] = "You are already an author!";
+
+                return this.RedirectToAction("Index", "Home");
             }
 
             return View();
