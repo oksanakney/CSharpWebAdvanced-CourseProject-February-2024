@@ -7,6 +7,7 @@ namespace NebulaNewsSystem.Web.Infrastructure.Extensions
 {
     public static class WebApplicationBuilderExtensions
     {
+        //v papka extensions we si pazia extensions, middlewares, modelbinder, etc
         /// <summary>
         /// This method registers all services with their interfaces and implementations of given assembly.
         /// The Assembly is taken from the type of random service implementation provided
