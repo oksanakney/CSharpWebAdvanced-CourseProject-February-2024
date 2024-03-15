@@ -26,7 +26,6 @@ namespace NebulaNewsSystem.Web.Controllers
                 return this.BadRequest();
             }
 
-
             return View();
         }
     }

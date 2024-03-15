@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NebulaNewsSystem.Services.Data.Interfaces;
-using NebulaNewsSystem.Web.Models;
 using NebulaNewsSystem.Web.ViewModels.Home;
 using System.Diagnostics;
 

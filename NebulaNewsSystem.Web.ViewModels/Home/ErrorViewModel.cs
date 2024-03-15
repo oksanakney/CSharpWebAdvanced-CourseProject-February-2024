@@ -1,4 +1,4 @@
-namespace NebulaNewsSystem.Web.Models
+namespace NebulaNewsSystem.Web.ViewModels.Home
 {
     public class ErrorViewModel
     {
