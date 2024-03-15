@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using NebulaNewsSystem.Data.Models;
 using NebulaNewsSystem.Services.Data.Interfaces;
 using NebulaNewsSystem.Web.Data;
 using NebulaNewsSystem.Web.ViewModels.Author;
@@ -33,7 +35,14 @@ namespace NebulaNewsSystem.Services.Data
 
         public async Task Create(string userId, BecomeAuthorFormModel model)
         {
-            throw new NotImplementedException();
+            Author newAgent = new Author()
+            {
+                PhoneNumber = model.PhoneNumber,
+                ReaderId = userId
+            };
+
+            await this.dbContext.Authors.AddAsync(newAgent);
+            await this.dbContext.SaveChangesAsync();
         }
 
         public Task<bool> HasCommentsByUserIdAsync(string userId)
