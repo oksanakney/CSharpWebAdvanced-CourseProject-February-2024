@@ -12,5 +12,7 @@ namespace NebulaNewsSystem.Web.Controllers
         {
             return View();
         }
+
+
     }
 }
