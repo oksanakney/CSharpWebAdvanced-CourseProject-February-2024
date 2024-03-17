@@ -1,4 +1,6 @@
-﻿namespace NebulaNewsSystem.Services.Data.Interfaces
+﻿using NebulaNewsSystem.Web.ViewModels.Category;
+
+namespace NebulaNewsSystem.Services.Data.Interfaces
 {
     public interface ICategoryService
     {
