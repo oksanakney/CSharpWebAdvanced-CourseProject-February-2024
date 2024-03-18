@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using NebulaNewsSystem.Data.Models;
 using NebulaNewsSystem.Services.Data.Interfaces;
 using NebulaNewsSystem.Web.Data;
 using NebulaNewsSystem.Web.Infrastructure.Extensions;
@@ -13,7 +14,7 @@ string connectionString =
 builder.Services.AddDbContext<NebulaNewsDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 {
     options.SignIn.RequireConfirmedAccount = 
         builder.Configuration.GetValue<bool>("Identity:SignIn:RequireConfirmedAccount");

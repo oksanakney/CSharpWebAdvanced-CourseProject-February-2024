@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using NebulaNewsSystem.Data.Configurations.SeedCofiguration;
 using NebulaNewsSystem.Data.Models;
@@ -10,7 +11,7 @@ using System.Reflection;
 namespace NebulaNewsSystem.Web.Data
 {
 
-    public class NebulaNewsDbContext : IdentityDbContext
+    public class NebulaNewsDbContext : IdentityDbContext<ApplicationUser, IdentityRole<string>, string>
     {
         private readonly bool seedDb;
 
