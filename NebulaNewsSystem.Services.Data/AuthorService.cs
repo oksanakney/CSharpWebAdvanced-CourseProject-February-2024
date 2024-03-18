@@ -48,13 +48,13 @@ namespace NebulaNewsSystem.Services.Data
 
         public async Task Create(string userId, BecomeAuthorFormModel model)
         {
-            Author newAgent = new Author()
+            Author newAuthor = new Author()
             {
                 PhoneNumber = model.PhoneNumber,
                 ReaderId = userId
             };
 
-            await this.dbContext.Authors.AddAsync(newAgent);
+            await this.dbContext.Authors.AddAsync(newAuthor);
             await this.dbContext.SaveChangesAsync();
         }
     }

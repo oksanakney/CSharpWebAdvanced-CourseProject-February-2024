@@ -7,11 +7,8 @@ namespace NebulaNewsSystem.Web.Controllers
     [Authorize]
     public class ArticleController : Controller
     {
-        [AllowAnonymous]
-        public async Task<IActionResult> All()
-        {
-            return View();
-        }
+       
+        
 
 
     }
