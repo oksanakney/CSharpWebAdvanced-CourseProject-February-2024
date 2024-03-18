@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NebulaNewsSystem.Data.Models;
 using NebulaNewsSystem.Services.Data.Interfaces;

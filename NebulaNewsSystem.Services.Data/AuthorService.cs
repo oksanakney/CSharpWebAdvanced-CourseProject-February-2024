@@ -31,6 +31,19 @@ namespace NebulaNewsSystem.Services.Data
                 .AnyAsync(au => au.PhoneNumber == phoneNumber);
 
             return result;
+        }       
+
+        public async Task<bool> HasCommentsByUserIdAsync(string userId)
+        {
+            ApplicationUser? user = await this.dbContext
+                .Users
+                .FirstOrDefaultAsync(u => u.Id == userId);
+            if (user == null) 
+            {
+                return false;
+            }
+
+            return user.CommentedArticles.Any();
         }
 
         public async Task Create(string userId, BecomeAuthorFormModel model)
@@ -43,11 +56,6 @@ namespace NebulaNewsSystem.Services.Data
 
             await this.dbContext.Authors.AddAsync(newAgent);
             await this.dbContext.SaveChangesAsync();
-        }
-
-        public Task<bool> HasCommentsByUserIdAsync(string userId)
-        {
-            throw new NotImplementedException();
         }
     }
 }
