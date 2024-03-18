@@ -52,7 +52,7 @@ namespace NebulaNewsSystem.Web.Controllers
                 this.ModelState.AddModelError(nameof(model.PhoneNumber), "Author with the provided phone number already exists!");            
             }
 
-            if (this.ModelState.IsValid) 
+            if (!this.ModelState.IsValid) 
             { 
                 return this.View(model);
             }
