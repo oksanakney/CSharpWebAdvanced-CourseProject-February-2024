@@ -6,5 +6,6 @@ namespace NebulaNewsSystem.Services.Data.Interfaces
     {
         // Last 3 or 5 article? Try and see
         Task<IEnumerable<IndexViewModel>> LastThreeArticlesAsync();
+        Task<decimal> CalculateReadingTimeAsync(string articleText);
     }
 }

@@ -17,6 +17,21 @@ namespace NebulaNewsSystem.Services.Data
         {
             this.dbContext = dbContext;
         }
+
+        public async Task<decimal> CalculateReadingTimeAsync(string articleText)
+        {
+            // 1.Calculate the word count
+            int wordCount = 
+                articleText.Split(new char[] { ' ', '.', '?' }, StringSplitOptions.RemoveEmptyEntries).Length;
+            // 2.Estimate reading time in minutes
+            int averageReadingSpeed = 200;
+            double readingTimeMinutes = (double)averageReadingSpeed / wordCount;
+            // 3.Convert to decimal(Hours)
+            decimal readingTimeHours = (decimal)readingTimeMinutes / 60;
+
+            return  readingTimeHours;
+        }
+
         public async Task<IEnumerable<IndexViewModel>> LastThreeArticlesAsync()
         {
             IEnumerable<IndexViewModel> lastThreeArticles = await this.dbContext
