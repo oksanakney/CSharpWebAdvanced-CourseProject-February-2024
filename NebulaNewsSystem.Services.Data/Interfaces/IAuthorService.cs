@@ -8,6 +8,8 @@ namespace NebulaNewsSystem.Services.Data.Interfaces
 
         Task<bool> AuthorExistsByPhoneNumberAsync(string phoneNumber);
 
+        Task<bool> AuthorExistsByEmailAddressAsync(string emailAddress);
+
         Task<bool> HasCommentsByUserIdAsync(string userId);
 
         Task Create(string userId, BecomeAuthorFormModel model);

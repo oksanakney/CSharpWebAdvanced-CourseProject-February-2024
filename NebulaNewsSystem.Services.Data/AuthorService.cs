@@ -31,7 +31,17 @@ namespace NebulaNewsSystem.Services.Data
                 .AnyAsync(au => au.PhoneNumber == phoneNumber);
 
             return result;
-        }       
+        }
+
+        public async Task<bool> AuthorExistsByEmailAddressAsync(string emailAddress)
+        {
+            bool result = await this.dbContext
+                .Authors
+                .AnyAsync(au => au.EmailAddress == emailAddress);
+
+            return result;
+        }
+
 
         public async Task<bool> HasCommentsByUserIdAsync(string userId)
         {
@@ -51,11 +61,12 @@ namespace NebulaNewsSystem.Services.Data
             Author newAuthor = new Author()
             {
                 PhoneNumber = model.PhoneNumber,
+                EmailAddress = model.EmailAddress,
                 ReaderId = userId
             };
 
             await this.dbContext.Authors.AddAsync(newAuthor);
             await this.dbContext.SaveChangesAsync();
-        }
+        }        
     }
 }

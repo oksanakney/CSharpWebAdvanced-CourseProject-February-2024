@@ -10,5 +10,10 @@ namespace NebulaNewsSystem.Web.ViewModels.Author
         [Phone]
         [Display(Name = "Phone")]
         public string PhoneNumber { get; set; } = null!;
+
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string EmailAddress { get; set; } = null!;
     }
 }

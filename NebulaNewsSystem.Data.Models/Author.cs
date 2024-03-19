@@ -22,7 +22,7 @@ namespace NebulaNewsSystem.Data.Models
         [Required]
         [DataType(DataType.EmailAddress)]
         [EmailAddress]
-        public string Email { get; set; } = null!;
+        public string EmailAddress { get; set; } = null!;
 
         public string? ReaderId { get; set; }
 
