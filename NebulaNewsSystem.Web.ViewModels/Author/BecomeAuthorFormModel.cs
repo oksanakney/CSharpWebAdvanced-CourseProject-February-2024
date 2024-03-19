@@ -8,12 +8,12 @@ namespace NebulaNewsSystem.Web.ViewModels.Author
         [Required]
         [RegularExpression(PhoneNumberRegEx)]
         [Phone]
-        [Display(Name = "Phone")]
+        [Display(Name = "Phone:")]
         public string PhoneNumber { get; set; } = null!;
 
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "E-mail address for contact:")]
         public string EmailAddress { get; set; } = null!;
     }
 }
