@@ -34,7 +34,7 @@ namespace NebulaNewsSystem.Web.Controllers
                 await this.authorService.AuthorExistsByReaderIdAsync(this.User.GetId()!);
             if (!isAuthor)
             {
-                TempData[ErrorMessage] = "You must become an author in order to add new houses!";
+                TempData[ErrorMessage] = "You must become an author in order to add new articles!";
 
                 return this.RedirectToAction("Become", "Author");
             }
