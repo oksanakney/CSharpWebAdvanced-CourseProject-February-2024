@@ -18,7 +18,7 @@ namespace NebulaNewsSystem.Data.Models
         [MaxLength(ContentMaxLength)]
         public string Content { get; set; } = null!;
 
-        //public DateTime PublicationDate { get; set; }
+        public DateTime PublicationDate { get; set; }
 
         [Required]
         [MaxLength(ImageUrlMaxLength)]
