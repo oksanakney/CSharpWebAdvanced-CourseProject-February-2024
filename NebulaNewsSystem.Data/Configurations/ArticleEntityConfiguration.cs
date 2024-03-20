@@ -6,9 +6,9 @@ namespace NebulaNewsSystem.Data.Models.Configuration
     {
         public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Article> builder)
         {
-            builder
-                .Property(a => a.PublicationDate)
-                .HasDefaultValue(DateTime.UtcNow);
+            //builder
+            //    .Property(a => a.PublicationDate)
+            //    .HasDefaultValue(DateTime.UtcNow);
 
             builder
                .HasOne(ar => ar.Category)
