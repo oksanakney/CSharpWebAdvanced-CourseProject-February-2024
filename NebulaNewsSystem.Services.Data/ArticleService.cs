@@ -1,7 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
+using NebulaNewsSystem.Data.Models;
 using NebulaNewsSystem.Services.Data.Interfaces;
 using NebulaNewsSystem.Web.Data;
+using NebulaNewsSystem.Web.ViewModels.Article;
 using NebulaNewsSystem.Web.ViewModels.Home;
+using System.Globalization;
+using static NebulaNewsSystem.Common.EntityValidationConstants.Article;
 
 namespace NebulaNewsSystem.Services.Data
 {
@@ -36,7 +41,7 @@ namespace NebulaNewsSystem.Services.Data
         {
             IEnumerable<IndexViewModel> lastThreeArticles = await this.dbContext
                 .Articles
-                .OrderByDescending(ar => ar.PublicationDate)
+                .OrderBy(ar => ar.Title)
                 .Take(3)
                 .Select(ar => new IndexViewModel()
                 {
@@ -48,5 +53,32 @@ namespace NebulaNewsSystem.Services.Data
 
             return lastThreeArticles;
         }
+
+        public async Task CreateAsync(ArticleFormModel formModel, string authorId)
+        {
+            //DateTime publicationDate = DateTime.UtcNow;
+            //if (!DateTime.TryParseExact(
+            //    formModel.PublicationDate,
+            //    DateFormat,
+            //    CultureInfo.InvariantCulture,
+            //    DateTimeStyles.None,
+            //    out publicationDate))
+           
+            // It is easier with automapper
+            Article newArticle = new Article()
+            {
+                Title = formModel.Title,
+                Content = formModel.Content,
+                ImageUrl = formModel.ImageUrl,                
+                CategoryId = formModel.CategoryId,
+                AuthorId = Guid.Parse(authorId)
+            };
+
+            await this.dbContext.AddAsync(newArticle);
+            await this.dbContext.SaveChangesAsync();
+
+            
+        }
+
     }
 }

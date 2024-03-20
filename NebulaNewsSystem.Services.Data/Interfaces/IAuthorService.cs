@@ -13,5 +13,7 @@ namespace NebulaNewsSystem.Services.Data.Interfaces
         Task<bool> HasCommentsByUserIdAsync(string userId);
 
         Task Create(string userId, BecomeAuthorFormModel model);
+
+        Task<string?> GetAuthorIdByUserIdAsync(string userId);
     }
 }

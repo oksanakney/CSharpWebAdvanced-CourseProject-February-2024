@@ -19,7 +19,9 @@ namespace NebulaNewsSystem.Web.ViewModels.Article
         [StringLength(ContentMaxLength, MinimumLength = ContentMinLength)]
         public string Content { get; set; } = null!;
 
-        public string PublicationDate { get; set; } = null!;
+        //[Required(ErrorMessage = "Publication date is required")]
+        //[Display(Name = "Publication Date")]
+        //public string PublicationDate { get; set; } = null!;
 
         [Required]
         [StringLength(ImageUrlMaxLength)]
