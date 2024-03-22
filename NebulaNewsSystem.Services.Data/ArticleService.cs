@@ -117,10 +117,26 @@ namespace NebulaNewsSystem.Services.Data
 
             };
 
+            //Paginantion
+
+            IEnumerable<ArticleAllViewModel> allArticles = await articlesQuery
+                .Skip((queryModel.CurrentPage - 1) * queryModel.ArticlesPerPage)
+                .Take(queryModel.ArticlesPerPage)
+                .Select(a => new ArticleAllViewModel
+                {
+                    Id = a.Id.ToString(),
+                    Title = a.Title,
+                    Content = a.Content,
+                    ImageUrl = a.ImageUrl
+
+                })
+                .ToArrayAsync();// materializiram
+            int totalArticles = articlesQuery.Count();
+
             return new AllArticlesFilteredAndPagedServiceModel()
             {
-                //TotalArticlesCount = totalArticles,
-                //Articles = allArticles
+                TotalArticlesCount = totalArticles,
+                Articles = allArticles
             };
         }
     }
