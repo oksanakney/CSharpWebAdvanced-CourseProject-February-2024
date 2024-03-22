@@ -2,10 +2,13 @@
 using Microsoft.VisualBasic;
 using NebulaNewsSystem.Data.Models;
 using NebulaNewsSystem.Services.Data.Interfaces;
+using NebulaNewsSystem.Services.Data.Models.Articles;
 using NebulaNewsSystem.Web.Data;
 using NebulaNewsSystem.Web.ViewModels.Article;
+using NebulaNewsSystem.Web.ViewModels.Article.Enums;
 using NebulaNewsSystem.Web.ViewModels.Home;
 using System.Globalization;
+using System.Linq;
 using static NebulaNewsSystem.Common.EntityValidationConstants.Article;
 
 namespace NebulaNewsSystem.Services.Data
@@ -80,5 +83,45 @@ namespace NebulaNewsSystem.Services.Data
             
         }
 
+        public async Task<AllArticlesFilteredAndPagedServiceModel> AllAsync(AllArticlesQueryModel queryModel)
+        {
+            // it permits us to build expression tree on Query
+            IQueryable<Article> articlesQuery = this.dbContext
+                .Articles
+                .AsQueryable();
+            if (!string.IsNullOrWhiteSpace(queryModel.Category))
+            {
+                articlesQuery = articlesQuery
+                    .Where(a => a.Category.Name == queryModel.Category);
+            }
+
+            if (!string.IsNullOrWhiteSpace(queryModel.SearchString))
+            {
+                string wildCard = $"%{queryModel.SearchString.ToLower()}%";
+                articlesQuery = articlesQuery
+                    .Where(h => EF.Functions.Like(h.Title, wildCard) ||
+                                EF.Functions.Like(h.Content, wildCard));
+            }
+
+            // Podrezdam gi 
+            articlesQuery = queryModel.ArticleSorting switch
+            {
+                ArticleSorting.Newest => articlesQuery
+                    .OrderBy(a => a.PublicationDate),
+                ArticleSorting.Oldest => articlesQuery
+                    .OrderByDescending(a => a.PublicationDate),
+
+               _ => articlesQuery
+                    .OrderBy(a => a.Title != null)
+                    .ThenByDescending(a => a.PublicationDate)
+
+            };
+
+            return new AllArticlesFilteredAndPagedServiceModel()
+            {
+                //TotalArticlesCount = totalArticles,
+                //Articles = allArticles
+            };
+        }
     }
 }

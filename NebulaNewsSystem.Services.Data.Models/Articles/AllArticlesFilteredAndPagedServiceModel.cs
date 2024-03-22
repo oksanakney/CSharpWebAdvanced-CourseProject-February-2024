@@ -4,6 +4,7 @@ namespace NebulaNewsSystem.Services.Data.Models.Articles
 {
     public class AllArticlesFilteredAndPagedServiceModel
     {
+        // Analog na dto, ne se vizualizirat, rabotiat s service
         public AllArticlesFilteredAndPagedServiceModel()
         {
             this.Articles = new HashSet<ArticleAllViewModel>();
