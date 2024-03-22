@@ -6,5 +6,7 @@ namespace NebulaNewsSystem.Services.Data.Interfaces
     {
         Task<IEnumerable<ArticleSelectCategoryFormModel>> AllCategoriesAsync();
         Task<bool> ExistsByIdAsync(int id);
+
+        Task<IEnumerable<string>> AllCategoryNamesAsync();
     }
 }

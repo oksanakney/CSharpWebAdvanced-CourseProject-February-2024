@@ -19,6 +19,7 @@
     <ProjectReference Include="..\NebulaNewsSystem.Common\NebulaNewsSystem.Common.csproj" />
     <ProjectReference Include="..\NebulaNewsSystem.Data.Models\NebulaNewsSystem.Data.Models.csproj" />
     <ProjectReference Include="..\NebulaNewsSystem.Data\NebulaNewsSystem.Data.csproj" />
+    <ProjectReference Include="..\NebulaNewsSystem.Services.Data.Models\NebulaNewsSystem.Services.Data.Models.csproj" />
     <ProjectReference Include="..\NebulaNewsSystem.Services.Data\NebulaNewsSystem.Services.Data.csproj" />
     <ProjectReference Include="..\NebulaNewsSystem.Web.Infrastructure\NebulaNewsSystem.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\NebulaNewsSystem.Web.ViewModels\NebulaNewsSystem.Web.ViewModels.csproj" />
