@@ -8,6 +8,7 @@ using NebulaNewsSystem.Web.ViewModels.Article;
 using static NebulaNewsSystem.Common.NotificationMessagesConstants;
 using static NebulaNewsSystem.Common.EntityValidationConstants.Article;
 using System.Globalization;
+using NebulaNewsSystem.Services.Data.Models.Articles;
 
 namespace NebulaNewsSystem.Web.Controllers
 {
@@ -26,11 +27,18 @@ namespace NebulaNewsSystem.Web.Controllers
             this.articleService = articleService;
         }
 
+        [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> All([FromQuery]AllArticlesQueryModel queryModel)
         {
-            //TODO
-            return this.Ok();
+            AllArticlesFilteredAndPagedServiceModel serviceModel =
+                await this.articleService.AllAsync(queryModel);
+
+            queryModel.Articles = serviceModel.Articles;
+            queryModel.TotalArticles = serviceModel.TotalArticlesCount;
+            queryModel.Categories = await this.categoryService.AllCategoryNamesAsync();
+
+            return this.View(queryModel);
         }
 
         [HttpGet]
