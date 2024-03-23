@@ -249,6 +249,9 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                         .HasMaxLength(2048)
                         .HasColumnType("nvarchar(2048)");
 
+                    b.Property<DateTime>("PublicationDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -272,6 +275,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                             CategoryId = 7,
                             Content = "A 17-year-old unlicensed driver of a Mercedes was detained last night by Dupnitsa's policemen. They carried out the inspection in the area of Sapareva Banya, and also found that the inspected car had registration plates issued for another vehicle. A quick police investigation was initiated in the Dupnitsa Intelligence Department, the prosecutor's office was notified.",
                             ImageUrl = "https://i.id24.bg/i/1616547.jpg",
+                            PublicationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Title = "A 17-year-old who drove a Mercedes both without a license and with fake license plates arrested"
                         },
                         new
@@ -281,6 +285,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                             CategoryId = 10,
                             Content = "The results of the competitions for principals of three Dupnitsa's schools are known now. Lyubomir Georgiev was elected as the director of \"Hristo Botev\" Profesional Gymnasium. He is a physical education teacher, baseball coach and former city councilman. The incumbent Gergana Milenkova dropped out of the race for the post. In head of secondary language school \"St. Paisiy Hilendarski\" remains Anelia Yordanova. She took over the leadership of the largest drilling school two years ago until a competition was held. Director of General Educational School \"St. Kliment Ohridski\" remains Juliana Borisova, who was the only candidate.",
                             ImageUrl = "https://static.bnr.bg/gallery/cr/3ae7c802129b9a9ae5af2da27e6a183a.jpg",
+                            PublicationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Title = "The results of the competitions for principals of schools in Dupnitsa are known"
                         },
                         new
@@ -290,6 +295,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                             CategoryId = 1,
                             Content = "The transformation of the mineral water borehole in the village of Bistrica into an object of primary importance for the municipality will be the subject of debate at an extraordinary session in Dupnitsa. The report was entered by the councilor from \"Voice of the People\" Gichka Mihailova. We recall that she would alarm that the firm involved in the study was considering a withdrawal.",
                             ImageUrl = "https://4vlast-bg.com/wp-content/uploads/2023/12/403389284_682223740702741_5157933701577735441_n.jpg",
+                            PublicationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Title = "The municipal council of Dupnitsa meets because of the mineral water in Bistritsa"
                         });
                 });
@@ -412,7 +418,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 3, 20, 13, 35, 21, 388, DateTimeKind.Utc).AddTicks(5123));
+                        .HasDefaultValue(new DateTime(2024, 3, 23, 20, 55, 24, 143, DateTimeKind.Utc).AddTicks(8836));
 
                     b.HasKey("CommentId");
 
@@ -429,7 +435,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                             ArticleId = new Guid("49cde94c-3f90-4f95-8e91-a751aa2b7af4"),
                             CommenterId = "247929cd-14da-4c78-bcc7-92fb93e300a1",
                             Content = "Dobre e taka, triabva da se vkara malko disciplina v gimnazijata",
-                            CreationDate = new DateTime(2024, 3, 20, 13, 35, 21, 388, DateTimeKind.Utc).AddTicks(6634)
+                            CreationDate = new DateTime(2024, 3, 23, 20, 55, 24, 144, DateTimeKind.Utc).AddTicks(975)
                         },
                         new
                         {
@@ -437,7 +443,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                             ArticleId = new Guid("550f78bf-9c45-4fa1-9a1e-4af3a5192be6"),
                             CommenterId = "20cd7080-3221-4b5e-96c9-f6ebd93555de",
                             Content = "emi za tova se praviat tolkova katastrofi, triabva da se vzemat merki",
-                            CreationDate = new DateTime(2024, 3, 20, 13, 35, 21, 388, DateTimeKind.Utc).AddTicks(6640)
+                            CreationDate = new DateTime(2024, 3, 23, 20, 55, 24, 144, DateTimeKind.Utc).AddTicks(982)
                         },
                         new
                         {
@@ -445,7 +451,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                             ArticleId = new Guid("3c74cdaa-71b0-4789-89e0-93c72fd2e8a9"),
                             CommenterId = "5c65b87d-ab20-4314-bf26-4c7dbcca0924",
                             Content = "Bravo na Gi4ka, da gi razkara oti stanali sa mnogo nagli",
-                            CreationDate = new DateTime(2024, 3, 20, 13, 35, 21, 388, DateTimeKind.Utc).AddTicks(6645)
+                            CreationDate = new DateTime(2024, 3, 23, 20, 55, 24, 144, DateTimeKind.Utc).AddTicks(988)
                         });
                 });
 
