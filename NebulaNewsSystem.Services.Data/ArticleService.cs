@@ -141,7 +141,7 @@ namespace NebulaNewsSystem.Services.Data
             };
         }
 
-        public async Task<ArticleAllViewModel> AllByAuthorIdAsync(string authorId)
+        public async Task<IEnumerable<ArticleAllViewModel>> AllByAuthorIdAsync(string authorId)
         {
             IEnumerable<ArticleAllViewModel> allAuthorArticles = await this.dbContext
                 .Articles
@@ -156,7 +156,7 @@ namespace NebulaNewsSystem.Services.Data
                 })
                 .ToArrayAsync();
 
-            return allAuthorArticl
+            return allAuthorArticles;
         }
     }
 }

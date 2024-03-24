@@ -11,7 +11,7 @@ namespace NebulaNewsSystem.Services.Data.Interfaces
         Task<decimal> CalculateReadingTimeAsync(string articleText);
         Task CreateAsync(ArticleFormModel formModel, string authorId);
         Task<AllArticlesFilteredAndPagedServiceModel> AllAsync(AllArticlesQueryModel queryModel);
-        Task<ArticleAllViewModel> AllByAuthorIdAsync (string authorId);
+        Task<IEnumerable<ArticleAllViewModel>> AllByAuthorIdAsync (string authorId);
 
     }
 }
