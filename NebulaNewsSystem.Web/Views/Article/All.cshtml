@@ -18,6 +18,14 @@
                     }
                 </select>
             </div>
+            <div class="form-group">
+                <label asp-for="ArticlesPerPage"></label>
+                <select asp-for="ArticlesPerPage" class="form-control">                    
+                    <option value="3">3</option>
+                    <option value="6">6</option>
+                    <option value="9">9</option>
+                </select>
+            </div>
         </div>
         <div class="form-group col-md-3">
             <label asp-for="SearchString"></label>
@@ -28,7 +36,7 @@
                 <label asp-for="ArticleSorting"></label>
                 <select asp-for="ArticleSorting" class="form-control">
                     <option value="0">Newest</option>
-                    <option value="1">Lowest price first</option>
+                    <option value="1">Oldest</option>
                     @*<option value="2">RatingAsc</option>*@
                     @*<option value="3">RatingDesc</option>*@
                 </select>
@@ -53,7 +61,7 @@
 <div class="row mb-5">
     <div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-start">
         <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
-           asp-controller="House"
+           asp-controller="Article"
            asp-action="All"
            asp-route-currentPage="@previousPage"
            asp-route-category="@Model.Category"
@@ -67,7 +75,7 @@
     <div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-end">
         <a class="btn btn-primary
 @(shouldButtonBeDisabled ? "disabled" : string.Empty)"
-           asp-controller="House"
+           asp-controller="Article"
            asp-action="All"
            asp-route-currentPage="@(Model.CurrentPage + 1)"
            asp-route-category="@Model.Category"
@@ -77,11 +85,11 @@
 </div>
 @if (!Model.Articles.Any())
 {
-    <h2 class="text-center">No houses found by the given criteria!</h2>
+    <h2 class="text-center">No articles found by the given criteria!</h2>
 }
 <div class="row">
-    @foreach (var house in Model.Articles)
+    @foreach (var article in Model.Articles)
     {
-        <partial name="_ArticlePartial" model="@house" />
+        <partial name="_ArticlePartial" model="@article" />
     }
 </div>

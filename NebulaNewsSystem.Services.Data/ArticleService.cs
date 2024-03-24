@@ -139,5 +139,10 @@ namespace NebulaNewsSystem.Services.Data
                 Articles = allArticles
             };
         }
+
+        public Task<ArticleAllViewModel> AllByAuthorIdAsync(string authorId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

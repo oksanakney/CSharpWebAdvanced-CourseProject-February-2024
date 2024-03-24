@@ -23,6 +23,7 @@ namespace NebulaNewsSystem.Web.ViewModels.Article
 
         public int CurrentPage { get; set; }
 
+        [Display(Name = "Show Articles On Page")]
         public int ArticlesPerPage { get; set; }
 
         public  int TotalArticles { get; set; }
