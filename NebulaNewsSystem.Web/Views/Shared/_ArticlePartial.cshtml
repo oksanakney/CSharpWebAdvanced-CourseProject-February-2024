@@ -1,4 +1,4 @@
-﻿@*@model ArticleAllViewModel
+﻿@model ArticleAllViewModel
 
 <div class="col-md-4">
     <div class="card mb-3">
@@ -10,7 +10,7 @@
             <br />
             <a asp-controller="Article" asp-action="Details" asp-route-id="@Model.Id"
                class="btn btn-success">Details</a>
-            @if (this.User.Identity.IsAuthenticated)
+            @if (this.User.Identity?.IsAuthenticated ?? false)
             {
                 <a asp-controller="Article" asp-action="Edit" asp-route-id="@Model.Id"
                    class="btn btn-warning">Edit</a>
@@ -20,4 +20,4 @@
             }
         </div>
     </div>
-</div>*@
+</div>
