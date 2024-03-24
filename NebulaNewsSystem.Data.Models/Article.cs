@@ -32,6 +32,8 @@ namespace NebulaNewsSystem.Data.Models
         [ForeignKey(nameof(CategoryId))]
         public virtual Category Category { get; set; } = null!;
 
+        public bool IsPublished { get; set; }
+
         public Guid AuthorId { get; set; }
 
         [ForeignKey(nameof(AuthorId))]  

@@ -14,5 +14,7 @@ namespace NebulaNewsSystem.Services.Data.Interfaces
         Task<IEnumerable<ArticleAllViewModel>> AllByAuthorIdAsync (string authorId);
         Task<ArticleFormModel> GetArticleForEditByIdAsync(string articleId);
 
+        Task<bool> ExistsByIdAsync (string articleId);
+
     }
 }

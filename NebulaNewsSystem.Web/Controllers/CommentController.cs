@@ -8,9 +8,11 @@ namespace NebulaNewsSystem.Web.Controllers
     public class CommentController : Controller
     {
         private readonly ICommentService commentService;
-        public CommentController(ICommentService commentService)
+        private readonly IArticleService articleService;
+        public CommentController(ICommentService commentService, IArticleService articleService )
         {
             this.commentService = commentService;
+            this.articleService = articleService;
         }
 
         /*Controller Actions:
@@ -23,25 +25,22 @@ namespace NebulaNewsSystem.Web.Controllers
 
         [HttpGet]
         public async Task<IActionResult> AddComment(string articleId, string readerId)
-        {
-            AddCommentViewModel viewModel = await this.commentService
-                .WriteCommentByArticleIdAsync(articleId, readerId);
-            if (viewModel == null) 
+        {            
+            bool articleExists = await this.articleService
+                .ExistsByIdAsync(articleId);
+            if (!articleExists) 
             {
                 this.TempData[ErrorMessage] = "Article with a provided id does not exist!";
 
                 return this.RedirectToAction("All", "Article");
             }
-
-            var model = new AddCommentViewModel()
-            {
-
-            };
+            
+           AddCommentViewModel model = await this.commentService
+                .WriteCommentByArticleIdAsync (articleId, readerId);
+            //TODO  
+           
 
             return View(model);
         }
-
-        
-
     }
 }

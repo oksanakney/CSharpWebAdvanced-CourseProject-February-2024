@@ -175,5 +175,15 @@ namespace NebulaNewsSystem.Services.Data
                 CategoryId = article.CategoryId
             };
         }
+
+        public async Task<bool> ExistsByIdAsync(string articleId)
+        {
+            bool result = await this.dbContext
+                .Articles
+                .Where(a => a.IsPublished)
+                .AnyAsync(a => a.Id.ToString() == articleId); 
+            
+            return result;
+        }
     }
 }
