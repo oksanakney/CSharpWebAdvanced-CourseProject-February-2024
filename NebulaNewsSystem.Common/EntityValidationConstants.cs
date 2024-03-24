@@ -13,6 +13,9 @@
             public const int TitleMinLength = 5;
             public const int TitleMaxLength = 100;
 
+            public const int ReadingTimeMinValue = 0;
+            public const int ReadingTimeMaxValue = 10;
+
             public const int ContentMinLength = 150;
             public const int ContentMaxLength = 2000;
 

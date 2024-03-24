@@ -20,6 +20,7 @@ namespace NebulaNewsSystem.Data.Models
 
         public DateTime PublicationDate { get; set; }
 
+        [Required]        
         public int ReadingTimeInMinutes { get; set; }
 
         [Required]
