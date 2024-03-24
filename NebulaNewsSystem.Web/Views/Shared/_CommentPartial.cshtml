@@ -1,0 +1,12 @@
+﻿@*@model CommentViewModel
+
+<div class="col-md-4">
+    <h3>Comments</h3>
+    @foreach (var comment in Model.Comment)
+    {
+        <div>
+            <p>@comment.Content</p>
+            <p>Posted by: @comment.CommenterId.Name | Posted on: @comment.CreationDate</p>
+        </div>
+    }
+</div>*@

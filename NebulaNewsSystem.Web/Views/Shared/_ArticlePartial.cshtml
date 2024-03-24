@@ -9,8 +9,12 @@
             <h6><p>@Model.Content</p></h6>
             
             <br />
-            <a asp-controller="Article" asp-action="Details" asp-route-id="@Model.Id"
+            <a asp-controller="Article" asp-action="Comment" asp-route-id="@Model.Id"
                class="btn btn-success">Comment</a>
+            @if (!this.User.Identity?.IsAuthenticated ?? false)
+            {
+                <h2 class="text-center">You have to register in order to comment the articles!</h2>
+            }
             @if (this.User.Identity?.IsAuthenticated ?? false)
             {
                 <a asp-controller="Article" asp-action="Edit" asp-route-id="@Model.Id"
