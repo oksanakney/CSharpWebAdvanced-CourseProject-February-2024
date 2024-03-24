@@ -12,6 +12,7 @@ namespace NebulaNewsSystem.Services.Data.Interfaces
         Task CreateAsync(ArticleFormModel formModel, string authorId);
         Task<AllArticlesFilteredAndPagedServiceModel> AllAsync(AllArticlesQueryModel queryModel);
         Task<IEnumerable<ArticleAllViewModel>> AllByAuthorIdAsync (string authorId);
+        Task<ArticleFormModel> GetArticleForEditByIdAsync(string articleId);
 
     }
 }

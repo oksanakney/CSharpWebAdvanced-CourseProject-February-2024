@@ -158,5 +158,22 @@ namespace NebulaNewsSystem.Services.Data
 
             return allAuthorArticles;
         }
+
+        public async Task<ArticleFormModel> GetArticleForEditByIdAsync(string articleId)
+        {
+            Article article = await this.dbContext
+                .Articles
+                .Include(a => a.Category)
+                .FirstAsync(a => a.Id.ToString() == articleId);
+
+            return new ArticleFormModel
+            {
+                Title = article.Title,
+                Content = article.Content,
+                PublicationDate = article.PublicationDate.ToString(),
+                ImageUrl = article.ImageUrl,
+                CategoryId = article.CategoryId
+            };
+        }
     }
 }
