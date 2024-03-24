@@ -185,5 +185,15 @@ namespace NebulaNewsSystem.Services.Data
             
             return result;
         }
+
+        public async Task<bool> IsAuthorWithIdPublisherOfArticleWithIdAsync(string articleId, string authorId)
+        {
+            Article article = await this.dbContext
+                .Articles
+                .Where(a => a.IsPublished)
+                .FirstAsync(a => a.Id.ToString() == articleId);
+
+            return article.AuthorId.ToString() == authorId;
+        }
     }
 }

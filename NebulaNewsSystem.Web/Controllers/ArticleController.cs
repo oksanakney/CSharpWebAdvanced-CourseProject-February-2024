@@ -138,6 +138,42 @@ namespace NebulaNewsSystem.Web.Controllers
             return View(myArticles);
         }
 
-        
+        [HttpGet]
+        public async Task<IActionResult> Edit(string id)
+        {
+            bool articleExists = await this.articleService
+                .ExistsByIdAsync(id);
+            if (!articleExists)
+            {
+                this.TempData[ErrorMessage] = "Article with a provided id does not exist!";
+
+                return this.RedirectToAction("All", "Article");
+            }
+
+            bool isUserAuthor = await this.authorService
+                .HasCommentsByUserIdAsync(this.User.GetId()!);
+            if (!isUserAuthor) 
+            {
+                this.TempData[ErrorMessage] = "You must become an author in order to edit article info!";
+
+                return RedirectToAction("Become", "Author");
+            }
+
+            string? authorId = await this.authorService.GetAuthorIdByUserIdAsync(this.User.GetId()!);
+            bool isAuthorPublisher = await this.articleService
+                .IsAuthorWithIdPublisherOfArticleWithIdAsync(id, authorId!);
+            if (!isAuthorPublisher) 
+            {
+                this.TempData[ErrorMessage] = "You must become the author who published the article you want to edit!";
+
+                return this.RedirectToAction("Mine", "House");
+            }
+
+            ArticleFormModel formModel = await this.articleService
+                .GetArticleForEditByIdAsync(id);
+            formModel.Categories = await this.categoryService.AllCategoriesAsync();
+
+            return this.View(formModel);
+        }
     }
 }
