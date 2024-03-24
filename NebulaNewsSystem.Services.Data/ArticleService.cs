@@ -28,16 +28,17 @@ namespace NebulaNewsSystem.Services.Data
 
         public async Task<decimal> CalculateReadingTimeAsync(string articleText)
         {
-            // 1.Calculate the word count
-            int wordCount = 
-                articleText.Split(new char[] { ' ', '.', '?' }, StringSplitOptions.RemoveEmptyEntries).Length;
-            // 2.Estimate reading time in minutes
-            int averageReadingSpeed = 200;
-            double readingTimeMinutes = (double)averageReadingSpeed / wordCount;
-            // 3.Convert to decimal(Hours)
-            decimal readingTimeHours = (decimal)readingTimeMinutes / 60;
+            // Simulate an asynchronous operation, like fetching data from a database or API
+            await Task.Delay(100); // For example, delay for 100 milliseconds
 
-            return  readingTimeHours;
+            // Your existing synchronous logic
+            int wordCount =
+                articleText.Split(new char[] { ' ', '.', '?' }, StringSplitOptions.RemoveEmptyEntries).Length;
+
+            int averageReadingSpeed = 200;
+            int readingTimeMinutes = (int)(averageReadingSpeed / wordCount);            
+
+            return readingTimeMinutes;
         }
 
         public async Task<IEnumerable<IndexViewModel>> LastThreeArticlesAsync()

@@ -27,6 +27,7 @@ namespace NebulaNewsSystem.Web.ViewModels.Article
         public int ArticlesPerPage { get; set; }
 
         public  int TotalArticles { get; set; }
+        public string PublicationDate { get; set; } = null!;
 
         public  IEnumerable<string> Categories { get; set; }
 

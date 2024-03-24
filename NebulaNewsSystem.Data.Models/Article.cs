@@ -20,6 +20,8 @@ namespace NebulaNewsSystem.Data.Models
 
         public DateTime PublicationDate { get; set; }
 
+        public int ReadingTimeInMinutes { get; set; }
+
         [Required]
         [MaxLength(ImageUrlMaxLength)]
         public string ImageUrl { get; set; } = null!;
