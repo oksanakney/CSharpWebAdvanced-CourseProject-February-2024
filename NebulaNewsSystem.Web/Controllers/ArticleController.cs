@@ -114,5 +114,29 @@ namespace NebulaNewsSystem.Web.Controllers
             return this.RedirectToAction("All", "Article");
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Mine()
+        {
+            List<ArticleAllViewModel> myArticles = 
+                new List<ArticleAllViewModel>();
+
+            string userId = this.User.GetId()!;
+            bool isUserAuthor = await this.authorService
+                .AuthorExistsByReaderIdAsync(userId);
+            if (!isUserAuthor)
+            {
+                string? authorId = 
+                    await this.authorService.GetAuthorIdByUserIdAsync(userId);
+
+                myArticles.AddRange(await this.articleService.AllByAuthorIdAsync(authorId!));
+            }
+            else 
+            { 
+                myArticles.AddRange(await this.articleService.AllByAuthorIdAsync(userId));
+            }
+
+            return View(myArticles);
+
+        }
     }
 }
