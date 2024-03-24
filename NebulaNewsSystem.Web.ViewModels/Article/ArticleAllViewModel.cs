@@ -11,6 +11,9 @@ namespace NebulaNewsSystem.Web.ViewModels.Article
         [Display(Name = "Created On")]
         public string PublicationDate { get; set; } = null!;
 
+        [Display(Name = "Minutes")]
+        public int ReadingTimeInMinutes { get; set; }
+
         [Display(Name ="Image Link")]
         public string ImageUrl { get; set; } = null!;       
     }

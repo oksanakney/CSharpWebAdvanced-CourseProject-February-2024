@@ -141,9 +141,22 @@ namespace NebulaNewsSystem.Services.Data
             };
         }
 
-        public Task<ArticleAllViewModel> AllByAuthorIdAsync(string authorId)
+        public async Task<ArticleAllViewModel> AllByAuthorIdAsync(string authorId)
         {
-            throw new NotImplementedException();
+            IEnumerable<ArticleAllViewModel> allAuthorArticles = await this.dbContext
+                .Articles
+                .Where(a => a.AuthorId.ToString() == authorId)
+                .Select(a => new ArticleAllViewModel()
+                {
+                    Id = a.Id.ToString(),
+                    Title = a.Title,
+                    Content = a.Content,
+                    ImageUrl = a.ImageUrl,
+                    PublicationDate = a.PublicationDate.ToString(),
+                })
+                .ToArrayAsync();
+
+            return allAuthorArticl
         }
     }
 }
