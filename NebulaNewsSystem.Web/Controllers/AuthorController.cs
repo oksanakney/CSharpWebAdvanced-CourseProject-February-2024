@@ -57,8 +57,8 @@ namespace NebulaNewsSystem.Web.Controllers
                 return this.View(model);
             }
 
-            bool isEmailAddressTAken = await this.authorService.AuthorExistsByEmailAddressAsync(userId);
-            if (isEmailAddressTAken) 
+            bool isEmailAddressTaken = await this.authorService.AuthorExistsByEmailAddressAsync(userId);
+            if (isEmailAddressTaken) 
             {
                 this.TempData[ErrorMessage] = "You are already an author!";
 

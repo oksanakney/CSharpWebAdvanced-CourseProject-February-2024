@@ -151,7 +151,7 @@ namespace NebulaNewsSystem.Web.Controllers
             }
 
             bool isUserAuthor = await this.authorService
-                .HasCommentsByUserIdAsync(this.User.GetId()!);
+                .AuthorExistsByReaderIdAsync(this.User.GetId()!);
             if (!isUserAuthor) 
             {
                 this.TempData[ErrorMessage] = "You must become an author in order to edit article info!";
