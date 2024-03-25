@@ -12,7 +12,9 @@ namespace NebulaNewsSystem.Web.Data.Migrations
             migrationBuilder.DropForeignKey(
                 name: "FK_Authors_AspNetUsers_ReaderId",
                 table: "Authors");
-            //migrationBuilder.DropPrimaryKey("PK_AspNetUserTokens", "AspNetUserTokens");
+            //migrationBuilder.DropForeignKey(
+            //name: "FK_AspNetUserTokens_AspNetUsers_UserId",
+            //table: "AspNetUserTokens");
 
 
             migrationBuilder.AlterColumn<Guid>(
@@ -141,6 +143,10 @@ namespace NebulaNewsSystem.Web.Data.Migrations
             migrationBuilder.DropForeignKey(
                 name: "FK_Authors_AspNetUsers_ReaderId",
                 table: "Authors");
+
+            //migrationBuilder.DropForeignKey(
+            //name: "FK_AspNetUserTokens_AspNetUsers_UserId",
+            //table: "AspNetUserTokens");
 
             migrationBuilder.AlterColumn<string>(
                 name: "CommenterId",

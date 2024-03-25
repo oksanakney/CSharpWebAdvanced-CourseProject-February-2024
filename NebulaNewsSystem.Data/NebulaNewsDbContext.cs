@@ -85,26 +85,7 @@ namespace NebulaNewsSystem.Web.Data
             builder.Entity<Comment>()
                 .HasOne(c => c.Commenter)
                 .WithMany(u => u.Comments)
-                .HasForeignKey(c => c.CommenterId);
-
-            builder.Entity<AspNetUserToken>()
-                .HasOne<IdentityUser>()
-                .WithMany()
-                .HasForeignKey(ut => ut.UserId)
-                .OnDelete(DeleteBehavior.Restrict); // Or DeleteBehavior.Cascade depending on your requirements
-
-            // Alter the column
-            builder.Entity<AspNetUserToken>()
-                .Property(ut => ut.UserId)
-                .IsRequired(false) // Depending on your requirements
-                .HasColumnType("uniqueidentifier");
-
-            // Recreate the foreign key constraint
-            builder.Entity<AspNetUserToken>()
-                .HasOne<IdentityUser>()
-                .WithMany()
-                .HasForeignKey(ut => ut.UserId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .HasForeignKey(c => c.CommenterId);            
 
             builder.ApplyConfiguration(new ArticleEntityConfiguration());           
             builder.ApplyConfiguration(new CommentEntityConfiguration());
