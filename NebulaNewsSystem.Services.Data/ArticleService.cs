@@ -8,7 +8,6 @@ using NebulaNewsSystem.Web.ViewModels.Article;
 using NebulaNewsSystem.Web.ViewModels.Article.Enums;
 using NebulaNewsSystem.Web.ViewModels.Home;
 using System.Globalization;
-using System.Linq;
 using static NebulaNewsSystem.Common.EntityValidationConstants.Article;
 
 namespace NebulaNewsSystem.Services.Data
@@ -195,6 +194,22 @@ namespace NebulaNewsSystem.Services.Data
                 .FirstAsync(a => a.Id.ToString() == articleId);
 
             return article.AuthorId.ToString() == authorId;
+        }
+
+        public async Task EditArticleByIdAndFormModel(string arcticleId, ArticleFormModel formModel)
+        {
+            Article article = await this.dbContext
+                .Articles
+                .Where(a => a.IsPublished)
+                .FirstAsync(a => a.Id.ToString() == arcticleId);            
+
+            article.Title = formModel.Title;
+            article.Content = formModel.Content;
+            article.PublicationDate = DateTime.ParseExact(formModel.PublicationDate, _DateFormat, null);
+            article.ImageUrl = formModel.ImageUrl;
+            article.CategoryId = formModel.CategoryId;
+
+            await this.dbContext.SaveChangesAsync();
         }
     }
 }

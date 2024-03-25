@@ -209,6 +209,21 @@ namespace NebulaNewsSystem.Web.Controllers
 
                 return this.RedirectToAction("Mine", "House");
             }
+
+            try
+            {
+                await this.articleService.EditArticleByIdAndFormModel(id, model);
+            }
+            catch (Exception)
+            {
+                this.ModelState.AddModelError(string.Empty, 
+                    "Unexpected error occured while trying to update the article! Please try again later or contact administrator.");
+                model.Categories = await this.categoryService.AllCategoriesAsync();
+
+                return this.View(model);
+            }
+
+            return this.RedirectToAction("Comment", "Article", new { id });
         }
     }
 }

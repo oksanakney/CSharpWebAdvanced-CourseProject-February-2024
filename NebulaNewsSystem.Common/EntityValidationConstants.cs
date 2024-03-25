@@ -21,7 +21,7 @@
 
             public const int ImageUrlMaxLength = 2048;
 
-            public const string DateFormat = "dd/MM/yyyy HH:mm";
+            public const string _DateFormat = "dd/MM/yyyy HH:mm";
         }
 
         public static class Author
