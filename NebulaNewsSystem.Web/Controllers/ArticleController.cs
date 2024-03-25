@@ -1,14 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using NebulaNewsSystem.Services.Data.Interfaces;
+using NebulaNewsSystem.Services.Data.Models.Articles;
 using NebulaNewsSystem.Web.Data.Migrations;
 using NebulaNewsSystem.Web.Infrastructure.Extensions;
 using NebulaNewsSystem.Web.ViewModels.Article;
 using static NebulaNewsSystem.Common.NotificationMessagesConstants;
-using static NebulaNewsSystem.Common.EntityValidationConstants.Article;
-using System.Globalization;
-using NebulaNewsSystem.Services.Data.Models.Articles;
 
 namespace NebulaNewsSystem.Web.Controllers
 {
@@ -173,7 +170,45 @@ namespace NebulaNewsSystem.Web.Controllers
                 .GetArticleForEditByIdAsync(id);
             formModel.Categories = await this.categoryService.AllCategoriesAsync();
 
-            return this.View(formModel);
+            return this.View(formModel);      
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(string id, ArticleFormModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                model.Categories = await this.categoryService.AllCategoriesAsync();
+                return this.View(model);
+            }
+
+            bool articleExists = await this.articleService
+                .ExistsByIdAsync(id);
+            if (!articleExists)
+            {
+                this.TempData[ErrorMessage] = "Article with a provided id does not exist!";
+
+                return this.RedirectToAction("All", "Article");
+            }
+
+            bool isUserAuthor = await this.authorService
+                .AuthorExistsByReaderIdAsync(this.User.GetId()!);
+            if (!isUserAuthor)
+            {
+                this.TempData[ErrorMessage] = "You must become an author in order to edit article info!";
+
+                return RedirectToAction("Become", "Author");
+            }
+
+            string? authorId = await this.authorService.GetAuthorIdByUserIdAsync(this.User.GetId()!);
+            bool isAuthorPublisher = await this.articleService
+                .IsAuthorWithIdPublisherOfArticleWithIdAsync(id, authorId!);
+            if (!isAuthorPublisher)
+            {
+                this.TempData[ErrorMessage] = "You must become the author who published the article you want to edit!";
+
+                return this.RedirectToAction("Mine", "House");
+            }
         }
     }
 }
