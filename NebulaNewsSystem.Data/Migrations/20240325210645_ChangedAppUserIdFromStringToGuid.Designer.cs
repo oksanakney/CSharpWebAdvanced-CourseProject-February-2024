@@ -12,8 +12,8 @@ using NebulaNewsSystem.Web.Data;
 namespace NebulaNewsSystem.Web.Data.Migrations
 {
     [DbContext(typeof(NebulaNewsDbContext))]
-    [Migration("20240325162400_IdentityUserIdChangedFromStringToGuid")]
-    partial class IdentityUserIdChangedFromStringToGuid
+    [Migration("20240325210645_ChangedAppUserIdFromStringToGuid")]
+    partial class ChangedAppUserIdFromStringToGuid
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -560,7 +560,9 @@ namespace NebulaNewsSystem.Web.Data.Migrations
 
                     b.HasOne("NebulaNewsSystem.Data.Models.ApplicationUser", "Commenter")
                         .WithMany("Comments")
-                        .HasForeignKey("CommenterId");
+                        .HasForeignKey("CommenterId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasConstraintName("FK_Comment_AspNetUsers_CommenterId");
 
                     b.Navigation("Article");
 

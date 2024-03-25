@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace NebulaNewsSystem.Web.Data.Migrations
 {
-    public partial class IdentityUserIdChangedFromStringToGuid : Migration
+    public partial class ChangedAppUserIdFromStringToGuid : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,57 +13,9 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                 name: "FK_Authors_AspNetUsers_ReaderId",
                 table: "Authors");
 
-            // Drop primary key constraint
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_AspNetUserTokens",
-                table: "AspNetUserTokens");
-
-            // Drop foreign key constraint
             migrationBuilder.DropForeignKey(
-                name: "FK_AspNetUserTokens_AspNetUsers_UserId",
-                table: "AspNetUserTokens");
-
-            migrationBuilder.DropForeignKey(
-            name: "FK_AspNetUserRoles_AspNetUsers_UserId",
-            table: "AspNetUserRoles");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_AspNetUserLogins_AspNetUsers_UserId",
-                table: "AspNetUserLogins");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_AspNetUserClaims_AspNetUsers_UserId",
-                table: "AspNetUserClaims");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Articles_AspNetUsers_ApplicationUserId",
-                table: "Articles");
-
-            // Drop the primary key constraint
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_AspNetUsers",
-                table: "AspNetUsers");
-
-            // Drop the foreign key constraint
-            migrationBuilder.DropForeignKey(
-                name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
-                table: "AspNetUserRoles");
-
-            // Drop the primary key constraint
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_AspNetUserRoles",
-                table: "AspNetUserRoles");
-
-            // Drop the foreign key constraint
-            migrationBuilder.DropForeignKey(
-                name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
-                table: "AspNetRoleClaims");
-
-            // Drop the primary key constraint
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_AspNetRoles",
-                table: "AspNetRoles");
-
+                name: "FK_Comment_AspNetUsers_CommenterId",
+                table: "Comment");
 
             migrationBuilder.AlterColumn<Guid>(
                 name: "CommenterId",
@@ -184,6 +136,14 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                 principalTable: "AspNetUsers",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Restrict);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Comment_AspNetUsers_CommenterId",
+                table: "Comment",
+                column: "CommenterId",
+                principalTable: "AspNetUsers",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -192,57 +152,9 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                 name: "FK_Authors_AspNetUsers_ReaderId",
                 table: "Authors");
 
-            // Drop primary key constraint
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_AspNetUserTokens",
-                table: "AspNetUserTokens");
-
-            // Drop foreign key constraint
             migrationBuilder.DropForeignKey(
-                name: "FK_AspNetUserTokens_AspNetUsers_UserId",
-                table: "AspNetUserTokens");
-
-            // Drop foreign key constraints referencing 'Id' column
-            migrationBuilder.DropForeignKey(
-                name: "FK_AspNetUserRoles_AspNetUsers_UserId",
-                table: "AspNetUserRoles");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_AspNetUserLogins_AspNetUsers_UserId",
-                table: "AspNetUserLogins");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_AspNetUserClaims_AspNetUsers_UserId",
-                table: "AspNetUserClaims");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Articles_AspNetUsers_ApplicationUserId",
-                table: "Articles");
-
-            // Drop the primary key constraint
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_AspNetUsers",
-                table: "AspNetUsers");
-
-            // Drop the foreign key constraint
-            migrationBuilder.DropForeignKey(
-                name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
-                table: "AspNetUserRoles");
-
-            // Drop the primary key constraint
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_AspNetUserRoles",
-                table: "AspNetUserRoles");
-
-            // Drop the foreign key constraint
-            migrationBuilder.DropForeignKey(
-                name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
-                table: "AspNetRoleClaims");
-
-            // Drop the primary key constraint
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_AspNetRoles",
-                table: "AspNetRoles");
+                name: "FK_Comment_AspNetUsers_CommenterId",
+                table: "Comment");
 
             migrationBuilder.AlterColumn<string>(
                 name: "CommenterId",
@@ -360,6 +272,13 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                 name: "FK_Authors_AspNetUsers_ReaderId",
                 table: "Authors",
                 column: "ReaderId",
+                principalTable: "AspNetUsers",
+                principalColumn: "Id");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Comment_AspNetUsers_CommenterId",
+                table: "Comment",
+                column: "CommenterId",
                 principalTable: "AspNetUsers",
                 principalColumn: "Id");
         }

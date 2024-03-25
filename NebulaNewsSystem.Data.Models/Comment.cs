@@ -3,8 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NebulaNewsSystem.Data.Models
-{
-    [NotMapped] 
+{     
     public class Comment
     {
         [Key]
@@ -19,7 +18,9 @@ namespace NebulaNewsSystem.Data.Models
 
         [ForeignKey(nameof(ArticleId))]
         public virtual Article Article { get; set; } = null!;       
-        public Guid? CommenterId { get; set; }        
+        public Guid? CommenterId { get; set; }
+
+        [ForeignKey(nameof(CommenterId))]
         public virtual ApplicationUser? Commenter { get; set; }
 
         //public bool IsAnonymous { get; set; }

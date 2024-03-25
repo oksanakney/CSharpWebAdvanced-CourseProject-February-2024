@@ -558,7 +558,9 @@ namespace NebulaNewsSystem.Web.Data.Migrations
 
                     b.HasOne("NebulaNewsSystem.Data.Models.ApplicationUser", "Commenter")
                         .WithMany("Comments")
-                        .HasForeignKey("CommenterId");
+                        .HasForeignKey("CommenterId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasConstraintName("FK_Comment_AspNetUsers_CommenterId");
 
                     b.Navigation("Article");
 

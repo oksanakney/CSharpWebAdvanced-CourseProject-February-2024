@@ -47,45 +47,20 @@ namespace NebulaNewsSystem.Web.Data
                 .HasOne(a => a.Reader)
                 .WithMany()
                 .HasForeignKey(a => a.ReaderId)
-                .OnDelete(DeleteBehavior.Restrict); 
-
-            // Alter the column
-            builder.Entity<Author>()
-                .Property(a => a.ReaderId)
-                .IsRequired(false) // or true depending on your requirements
-                .HasColumnType("uniqueidentifier");
-
-            // Recreate the foreign key constraint
-            builder.Entity<Author>()
-                .HasOne(a => a.Reader)
-                .WithMany()
-                .HasForeignKey(a => a.ReaderId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.Entity<Comment>()
-                .HasOne(c => c.Commenter)
-                .WithMany()
-                .HasForeignKey(c => c.CommenterId)
-                .OnDelete(DeleteBehavior.Restrict); // Or DeleteBehavior.Cascade depending on your requirements
 
-            // Alter the column
-            builder.Entity<Comment>()
-                .Property(c => c.CommenterId)
-                .IsRequired(false) // Depending on your requirements
-                .HasColumnType("uniqueidentifier");
+            // Ensure that Comment entity is mapped
+            builder.Entity<Comment>();
 
-            // Recreate the foreign key constraint
+            // Configure the relationship between Comment and AspNetUsers
             builder.Entity<Comment>()
-                .HasOne(c => c.Commenter)
-                .WithMany()
-                .HasForeignKey(c => c.CommenterId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder.Ignore<Comment>();
-            builder.Entity<Comment>()
-                .HasOne(c => c.Commenter)
-                .WithMany(u => u.Comments)
-                .HasForeignKey(c => c.CommenterId);            
+                .HasOne(c => c.Commenter)           // Comment has one Commenter
+                .WithMany(u => u.Comments)           // Commenter can have many Comments
+                .HasForeignKey(c => c.CommenterId)  // Foreign key property in Comment entity
+                .IsRequired(false)                  // Depending on your requirements
+                .OnDelete(DeleteBehavior.Restrict)  // Specify delete behavior if needed
+                .HasConstraintName("FK_Comment_AspNetUsers_CommenterId"); // Specify the constraint name
 
             builder.ApplyConfiguration(new ArticleEntityConfiguration());           
             builder.ApplyConfiguration(new CommentEntityConfiguration());
