@@ -6,7 +6,7 @@
         <div class="card-body text-center">
             <h4>@Model.Title</h4>  
             <h2><time datetime="@Model.PublicationDate">@Model.PublicationDate</time></h2>
-            <h6><p>@Model.Content</p></h6>
+            <h5><p>@Model.Content</p></h5>
             
             <br />
             <a asp-controller="Article" asp-action="Comment" asp-route-id="@Model.Id"

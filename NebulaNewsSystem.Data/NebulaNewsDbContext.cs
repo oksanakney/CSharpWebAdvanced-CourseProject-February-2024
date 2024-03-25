@@ -5,13 +5,14 @@ using NebulaNewsSystem.Data.Configurations.SeedCofiguration;
 using NebulaNewsSystem.Data.Models;
 using NebulaNewsSystem.Data.Models.Configuration;
 using System.Reflection;
+using System.Reflection.Emit;
 
 
 
 namespace NebulaNewsSystem.Web.Data
 {
 
-    public class NebulaNewsDbContext : IdentityDbContext<ApplicationUser, IdentityRole<string>, string>
+    public class NebulaNewsDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
     {
         private readonly bool seedDb;
 
@@ -37,16 +38,73 @@ namespace NebulaNewsSystem.Web.Data
             //Assembly configAssembly = Assembly.GetAssembly(typeof(NebulaNewsDbContext)) ??
             //                          Assembly.GetExecutingAssembly();
             //builder.ApplyConfigurationsFromAssembly(configAssembly);
-            builder
-                 .Entity<ApplicationUser>()
-                 .Property(e => e.UserName)
-                 .ValueGeneratedOnAdd();
+            //builder
+            //     .Entity<ApplicationUser>()
+            //     .Property(e => e.UserName)
+            //     .ValueGeneratedOnAdd();
+
+            builder.Entity<Author>()
+                .HasOne(a => a.Reader)
+                .WithMany()
+                .HasForeignKey(a => a.ReaderId)
+                .OnDelete(DeleteBehavior.Restrict); 
+
+            // Alter the column
+            builder.Entity<Author>()
+                .Property(a => a.ReaderId)
+                .IsRequired(false) // or true depending on your requirements
+                .HasColumnType("uniqueidentifier");
+
+            // Recreate the foreign key constraint
+            builder.Entity<Author>()
+                .HasOne(a => a.Reader)
+                .WithMany()
+                .HasForeignKey(a => a.ReaderId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Comment>()
+                .HasOne(c => c.Commenter)
+                .WithMany()
+                .HasForeignKey(c => c.CommenterId)
+                .OnDelete(DeleteBehavior.Restrict); // Or DeleteBehavior.Cascade depending on your requirements
+
+            // Alter the column
+            builder.Entity<Comment>()
+                .Property(c => c.CommenterId)
+                .IsRequired(false) // Depending on your requirements
+                .HasColumnType("uniqueidentifier");
+
+            // Recreate the foreign key constraint
+            builder.Entity<Comment>()
+                .HasOne(c => c.Commenter)
+                .WithMany()
+                .HasForeignKey(c => c.CommenterId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.Ignore<Comment>();
             builder.Entity<Comment>()
                 .HasOne(c => c.Commenter)
                 .WithMany(u => u.Comments)
                 .HasForeignKey(c => c.CommenterId);
+
+            builder.Entity<AspNetUserToken>()
+                .HasOne<IdentityUser>()
+                .WithMany()
+                .HasForeignKey(ut => ut.UserId)
+                .OnDelete(DeleteBehavior.Restrict); // Or DeleteBehavior.Cascade depending on your requirements
+
+            // Alter the column
+            builder.Entity<AspNetUserToken>()
+                .Property(ut => ut.UserId)
+                .IsRequired(false) // Depending on your requirements
+                .HasColumnType("uniqueidentifier");
+
+            // Recreate the foreign key constraint
+            builder.Entity<AspNetUserToken>()
+                .HasOne<IdentityUser>()
+                .WithMany()
+                .HasForeignKey(ut => ut.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.ApplyConfiguration(new ArticleEntityConfiguration());           
             builder.ApplyConfiguration(new CommentEntityConfiguration());

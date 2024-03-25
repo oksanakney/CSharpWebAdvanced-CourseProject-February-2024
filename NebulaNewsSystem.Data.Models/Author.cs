@@ -24,7 +24,7 @@ namespace NebulaNewsSystem.Data.Models
         [EmailAddress]
         public string EmailAddress { get; set; } = null!;
 
-        public string? ReaderId { get; set; }
+        public Guid? ReaderId { get; set; }
 
         [ForeignKey(nameof(ReaderId))]
         public virtual ApplicationUser? Reader { get; set; }

@@ -21,7 +21,7 @@ namespace NebulaNewsSystem.Web.Controllers
         public async Task<IActionResult> Become()
         {
             string? userId = this.User.GetId();
-            bool isAuthor = await this.authorService.AuthorExistsByReaderIdAsync(userId);
+            bool isAuthor = await this.authorService.AuthorExistsByReaderIdAsync(userId!);
             if (isAuthor)
             {
                 this.TempData[ErrorMessage] = "You are already an author!";
@@ -36,7 +36,7 @@ namespace NebulaNewsSystem.Web.Controllers
         public async Task<IActionResult> Become(BecomeAuthorFormModel model)
         {
             string? userId = this.User.GetId();
-            bool isAuthor = await this.authorService.AuthorExistsByReaderIdAsync(userId);
+            bool isAuthor = await this.authorService.AuthorExistsByReaderIdAsync(userId!);
             if (isAuthor)
             {
                 this.TempData[ErrorMessage] = "You are already an author!";
@@ -57,7 +57,7 @@ namespace NebulaNewsSystem.Web.Controllers
                 return this.View(model);
             }
 
-            bool isEmailAddressTaken = await this.authorService.AuthorExistsByEmailAddressAsync(userId);
+            bool isEmailAddressTaken = await this.authorService.AuthorExistsByEmailAddressAsync(userId!);
             if (isEmailAddressTaken) 
             {
                 this.TempData[ErrorMessage] = "You are already an author!";
@@ -70,7 +70,7 @@ namespace NebulaNewsSystem.Web.Controllers
             //    .HasCommentsByUserIdAsync(userId);
             try
             {
-                await this.authorService.Create(userId, model);
+                await this.authorService.Create(userId!, model);
             }
             catch (Exception)
             {
