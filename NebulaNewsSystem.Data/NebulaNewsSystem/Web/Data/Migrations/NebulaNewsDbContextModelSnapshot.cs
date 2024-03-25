@@ -22,11 +22,10 @@ namespace NebulaNewsSystem.Web.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<string>", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -50,7 +49,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                     b.ToTable("AspNetRoles", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -64,8 +63,9 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                     b.Property<string>("ClaimValue")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("RoleId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
@@ -74,7 +74,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                     b.ToTable("AspNetRoleClaims", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -88,8 +88,9 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                     b.Property<string>("ClaimValue")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
@@ -98,7 +99,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                     b.ToTable("AspNetUserClaims", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
                         .HasMaxLength(128)
@@ -111,8 +112,9 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -121,13 +123,13 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                     b.ToTable("AspNetUserLogins", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<Guid>("RoleId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -136,10 +138,10 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                     b.ToTable("AspNetUserRoles", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
                         .HasMaxLength(128)
@@ -159,9 +161,8 @@ namespace NebulaNewsSystem.Web.Data.Migrations
 
             modelBuilder.Entity("NebulaNewsSystem.Data.Models.ApplicationUser", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
@@ -207,6 +208,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
+                        .ValueGeneratedOnAdd()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
@@ -229,8 +231,8 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("ApplicationUserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<Guid>("AuthorId")
                         .HasColumnType("uniqueidentifier");
@@ -270,7 +272,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Articles");
+                    b.ToTable("Articles", (string)null);
 
                     b.HasData(
                         new
@@ -325,14 +327,14 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("ReaderId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("ReaderId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ReaderId");
 
-                    b.ToTable("Authors");
+                    b.ToTable("Authors", (string)null);
                 });
 
             modelBuilder.Entity("NebulaNewsSystem.Data.Models.Category", b =>
@@ -350,7 +352,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
 
                     b.HasData(
                         new
@@ -419,8 +421,8 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                     b.Property<Guid>("ArticleId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("CommenterId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("CommenterId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Content")
                         .IsRequired()
@@ -435,14 +437,14 @@ namespace NebulaNewsSystem.Web.Data.Migrations
 
                     b.HasIndex("CommenterId");
 
-                    b.ToTable("Comment");
+                    b.ToTable("Comment", (string)null);
 
                     b.HasData(
                         new
                         {
                             CommentId = new Guid("53e508ee-3a15-4d7a-868a-00c38be79b84"),
                             ArticleId = new Guid("49cde94c-3f90-4f95-8e91-a751aa2b7af4"),
-                            CommenterId = new Guid("247929cd-14da-4c78-bcc7-92fb93e300a1"),
+                            CommenterId = "247929cd-14da-4c78-bcc7-92fb93e300a1",
                             Content = "Dobre e taka, triabva da se vkara malko disciplina v gimnazijata",
                             CreationDate = new DateTime(2024, 3, 14, 15, 45, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -450,7 +452,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                         {
                             CommentId = new Guid("1ce4973f-a458-4777-ac31-9032bd11f426"),
                             ArticleId = new Guid("550f78bf-9c45-4fa1-9a1e-4af3a5192be6"),
-                            CommenterId = new Guid("20cd7080-3221-4b5e-96c9-f6ebd93555de"),
+                            CommenterId = "20cd7080-3221-4b5e-96c9-f6ebd93555de",
                             Content = "emi za tova se praviat tolkova katastrofi, triabva da se vzemat merki",
                             CreationDate = new DateTime(2024, 3, 14, 12, 28, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -458,22 +460,22 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                         {
                             CommentId = new Guid("a57e0fc2-96d6-41e8-ac14-aaf5f91872b4"),
                             ArticleId = new Guid("3c74cdaa-71b0-4789-89e0-93c72fd2e8a9"),
-                            CommenterId = new Guid("5c65b87d-ab20-4314-bf26-4c7dbcca0924"),
+                            CommenterId = "5c65b87d-ab20-4314-bf26-4c7dbcca0924",
                             Content = "Bravo na Gi4ka, da gi razkara oti stanali sa mnogo nagli",
                             CreationDate = new DateTime(2024, 3, 14, 16, 59, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<string>", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.HasOne("NebulaNewsSystem.Data.Models.ApplicationUser", null)
                         .WithMany()
@@ -482,7 +484,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.HasOne("NebulaNewsSystem.Data.Models.ApplicationUser", null)
                         .WithMany()
@@ -491,9 +493,9 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<string>", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -506,7 +508,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
                     b.HasOne("NebulaNewsSystem.Data.Models.ApplicationUser", null)
                         .WithMany()
@@ -542,8 +544,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                 {
                     b.HasOne("NebulaNewsSystem.Data.Models.ApplicationUser", "Reader")
                         .WithMany()
-                        .HasForeignKey("ReaderId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("ReaderId");
 
                     b.Navigation("Reader");
                 });
@@ -558,9 +559,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
 
                     b.HasOne("NebulaNewsSystem.Data.Models.ApplicationUser", "Commenter")
                         .WithMany("Comments")
-                        .HasForeignKey("CommenterId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .HasConstraintName("FK_Comment_AspNetUsers_CommenterId");
+                        .HasForeignKey("CommenterId");
 
                     b.Navigation("Article");
 
