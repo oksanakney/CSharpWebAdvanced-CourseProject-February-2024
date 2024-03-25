@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NebulaNewsSystem.Web.Data;
 
@@ -11,9 +12,10 @@ using NebulaNewsSystem.Web.Data;
 namespace NebulaNewsSystem.Web.Data.Migrations
 {
     [DbContext(typeof(NebulaNewsDbContext))]
-    partial class NebulaNewsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240325135109_ApplicationUserIsAddedToApplicationUser")]
+    partial class ApplicationUserIsAddedToApplicationUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -167,6 +169,9 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -208,7 +213,6 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
-                        .ValueGeneratedOnAdd()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
@@ -272,7 +276,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Articles", (string)null);
+                    b.ToTable("Articles");
 
                     b.HasData(
                         new
@@ -334,7 +338,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
 
                     b.HasIndex("ReaderId");
 
-                    b.ToTable("Authors", (string)null);
+                    b.ToTable("Authors");
                 });
 
             modelBuilder.Entity("NebulaNewsSystem.Data.Models.Category", b =>
@@ -352,7 +356,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
 
                     b.HasData(
                         new
@@ -429,7 +433,9 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime2");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2024, 3, 25, 13, 51, 8, 638, DateTimeKind.Utc).AddTicks(767));
 
                     b.HasKey("CommentId");
 
@@ -437,7 +443,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
 
                     b.HasIndex("CommenterId");
 
-                    b.ToTable("Comment", (string)null);
+                    b.ToTable("Comment");
 
                     b.HasData(
                         new
@@ -446,7 +452,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                             ArticleId = new Guid("49cde94c-3f90-4f95-8e91-a751aa2b7af4"),
                             CommenterId = "247929cd-14da-4c78-bcc7-92fb93e300a1",
                             Content = "Dobre e taka, triabva da se vkara malko disciplina v gimnazijata",
-                            CreationDate = new DateTime(2024, 3, 14, 15, 45, 0, 0, DateTimeKind.Unspecified)
+                            CreationDate = new DateTime(2024, 3, 25, 13, 51, 8, 638, DateTimeKind.Utc).AddTicks(2511)
                         },
                         new
                         {
@@ -454,7 +460,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                             ArticleId = new Guid("550f78bf-9c45-4fa1-9a1e-4af3a5192be6"),
                             CommenterId = "20cd7080-3221-4b5e-96c9-f6ebd93555de",
                             Content = "emi za tova se praviat tolkova katastrofi, triabva da se vzemat merki",
-                            CreationDate = new DateTime(2024, 3, 14, 12, 28, 0, 0, DateTimeKind.Unspecified)
+                            CreationDate = new DateTime(2024, 3, 25, 13, 51, 8, 638, DateTimeKind.Utc).AddTicks(2521)
                         },
                         new
                         {
@@ -462,7 +468,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                             ArticleId = new Guid("3c74cdaa-71b0-4789-89e0-93c72fd2e8a9"),
                             CommenterId = "5c65b87d-ab20-4314-bf26-4c7dbcca0924",
                             Content = "Bravo na Gi4ka, da gi razkara oti stanali sa mnogo nagli",
-                            CreationDate = new DateTime(2024, 3, 14, 16, 59, 0, 0, DateTimeKind.Unspecified)
+                            CreationDate = new DateTime(2024, 3, 25, 13, 51, 8, 638, DateTimeKind.Utc).AddTicks(2526)
                         });
                 });
 
@@ -558,7 +564,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("NebulaNewsSystem.Data.Models.ApplicationUser", "Commenter")
-                        .WithMany("Comments")
+                        .WithMany()
                         .HasForeignKey("CommenterId");
 
                     b.Navigation("Article");
@@ -569,8 +575,6 @@ namespace NebulaNewsSystem.Web.Data.Migrations
             modelBuilder.Entity("NebulaNewsSystem.Data.Models.ApplicationUser", b =>
                 {
                     b.Navigation("CommentedArticles");
-
-                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("NebulaNewsSystem.Data.Models.Article", b =>

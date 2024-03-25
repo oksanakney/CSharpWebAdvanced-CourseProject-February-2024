@@ -10,11 +10,7 @@ namespace NebulaNewsSystem.Data.Models.Configuration
             builder
                .HasOne(c => c.Article)
                .WithMany(ar => ar.Comments)
-               .OnDelete(DeleteBehavior.Restrict);
-
-            builder
-                .Property(c => c.CreationDate)
-                .HasDefaultValue(DateTime.UtcNow);
+               .OnDelete(DeleteBehavior.Restrict);            
         }       
     }
 }

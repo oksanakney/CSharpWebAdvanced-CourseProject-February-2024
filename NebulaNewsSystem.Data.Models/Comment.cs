@@ -3,7 +3,8 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NebulaNewsSystem.Data.Models
-{    
+{
+    [NotMapped] 
     public class Comment
     {
         [Key]

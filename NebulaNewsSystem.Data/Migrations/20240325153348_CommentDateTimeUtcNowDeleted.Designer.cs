@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NebulaNewsSystem.Web.Data;
 
@@ -11,9 +12,10 @@ using NebulaNewsSystem.Web.Data;
 namespace NebulaNewsSystem.Web.Data.Migrations
 {
     [DbContext(typeof(NebulaNewsDbContext))]
-    partial class NebulaNewsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240325153348_CommentDateTimeUtcNowDeleted")]
+    partial class CommentDateTimeUtcNowDeleted
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -272,7 +274,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Articles", (string)null);
+                    b.ToTable("Articles");
 
                     b.HasData(
                         new
@@ -334,7 +336,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
 
                     b.HasIndex("ReaderId");
 
-                    b.ToTable("Authors", (string)null);
+                    b.ToTable("Authors");
                 });
 
             modelBuilder.Entity("NebulaNewsSystem.Data.Models.Category", b =>
@@ -352,7 +354,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
 
                     b.HasData(
                         new
@@ -437,7 +439,7 @@ namespace NebulaNewsSystem.Web.Data.Migrations
 
                     b.HasIndex("CommenterId");
 
-                    b.ToTable("Comment", (string)null);
+                    b.ToTable("Comment");
 
                     b.HasData(
                         new

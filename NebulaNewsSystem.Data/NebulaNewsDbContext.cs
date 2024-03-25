@@ -37,6 +37,16 @@ namespace NebulaNewsSystem.Web.Data
             //Assembly configAssembly = Assembly.GetAssembly(typeof(NebulaNewsDbContext)) ??
             //                          Assembly.GetExecutingAssembly();
             //builder.ApplyConfigurationsFromAssembly(configAssembly);
+            builder
+                 .Entity<ApplicationUser>()
+                 .Property(e => e.UserName)
+                 .ValueGeneratedOnAdd();
+
+            builder.Ignore<Comment>();
+            builder.Entity<Comment>()
+                .HasOne(c => c.Commenter)
+                .WithMany(u => u.Comments)
+                .HasForeignKey(c => c.CommenterId);
 
             builder.ApplyConfiguration(new ArticleEntityConfiguration());           
             builder.ApplyConfiguration(new CommentEntityConfiguration());
