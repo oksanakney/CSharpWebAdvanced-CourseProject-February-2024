@@ -69,7 +69,7 @@ namespace NebulaNewsSystem.Services.Data
             await this.dbContext.SaveChangesAsync();
         }
 
-        public async Task<string> GetAuthorIdByUserIdAsync(string userId)
+        public async Task<string?> GetAuthorIdByUserIdAsync(string userId)
         {
             Author? author = await this.dbContext
                 .Authors

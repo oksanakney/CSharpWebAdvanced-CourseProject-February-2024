@@ -28,7 +28,8 @@ namespace NebulaNewsSystem.Data.Configurations.SeedCofiguration
                 ImageUrl = "https://i.id24.bg/i/1616547.jpg",
                 PublicationDate = DateTime.ParseExact(publicationDate1, "dd.MM.yyyy HH:mm", null),
                 CategoryId = 7,
-                AuthorId = Guid.Parse("439455A8-590B-4FD3-A3F6-5CF16729DBB2")
+                AuthorId = Guid.Parse("439455A8-590B-4FD3-A3F6-5CF16729DBB2"),
+                IsPublished = true
             };
             articles.Add(article);
 
@@ -43,7 +44,8 @@ namespace NebulaNewsSystem.Data.Configurations.SeedCofiguration
                 ImageUrl = "https://static.bnr.bg/gallery/cr/3ae7c802129b9a9ae5af2da27e6a183a.jpg",
                 PublicationDate = DateTime.ParseExact(publicationDate2, "dd.MM.yyyy HH:mm", null),
                 CategoryId = 10,
-                AuthorId = Guid.Parse("439455A8-590B-4FD3-A3F6-5CF16729DBB2")
+                AuthorId = Guid.Parse("439455A8-590B-4FD3-A3F6-5CF16729DBB2"),
+                IsPublished = true
             };
             articles.Add(article);
 
@@ -57,7 +59,8 @@ namespace NebulaNewsSystem.Data.Configurations.SeedCofiguration
                 ImageUrl = "https://4vlast-bg.com/wp-content/uploads/2023/12/403389284_682223740702741_5157933701577735441_n.jpg",
                 PublicationDate = DateTime.ParseExact(publicationDate3, "dd.MM.yyyy HH:mm", null),
                 CategoryId = 1,
-                AuthorId = Guid.Parse("439455A8-590B-4FD3-A3F6-5CF16729DBB2")
+                AuthorId = Guid.Parse("439455A8-590B-4FD3-A3F6-5CF16729DBB2"),
+                IsPublished = true
             };
             articles.Add(article);
 
