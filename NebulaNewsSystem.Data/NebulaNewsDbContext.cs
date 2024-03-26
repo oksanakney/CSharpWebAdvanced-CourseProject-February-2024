@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using NebulaNewsSystem.Data.Models;
-using NebulaNewsSystem.Web.Data.Migrations;
 using System.Reflection.Emit;
 
 namespace NebulaNewsSystem.Web.Data

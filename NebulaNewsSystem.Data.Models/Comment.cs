@@ -25,7 +25,7 @@ namespace NebulaNewsSystem.Data.Models
         [ForeignKey(nameof(AuthorId))]
         public Author Author { get; set; } = null!;
 
-        public int ArticleId { get; set; }
+        public Guid ArticleId { get; set; }
 
         [ForeignKey(nameof(ArticleId))]
         public Article Article { get; set; } = null!;   
