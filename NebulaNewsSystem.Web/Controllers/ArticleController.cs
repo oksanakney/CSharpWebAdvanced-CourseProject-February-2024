@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using NebulaNewsSystem.Services.Data.Interfaces;
 using NebulaNewsSystem.Services.Data.Models.Articles;
-using NebulaNewsSystem.Web.Data.Migrations;
 using NebulaNewsSystem.Web.Infrastructure.Extensions;
 using NebulaNewsSystem.Web.ViewModels.Article;
 using static NebulaNewsSystem.Common.NotificationMessagesConstants;
@@ -51,13 +50,20 @@ namespace NebulaNewsSystem.Web.Controllers
                 return this.RedirectToAction("Become", "Author");
             }
 
-            ArticleFormModel formModel = new ArticleFormModel()
-            //object initializer
+            try
             {
-                Categories = await this.categoryService.AllCategoriesAsync()
-            };
+                ArticleFormModel formModel = new ArticleFormModel()
+                //object initializer
+                {
+                    Categories = await this.categoryService.AllCategoriesAsync()
+                };
 
-            return View(formModel);      
+                return this.View(formModel);
+            }
+            catch (Exception)
+            {
+                return this.GeneralError();
+            }     
         }
 
         [HttpPost]
@@ -120,19 +126,26 @@ namespace NebulaNewsSystem.Web.Controllers
             string userId = this.User.GetId()!;
             bool isUserAuthor = await this.authorService
                 .AuthorExistsByReaderIdAsync(userId);
-            if (!isUserAuthor)
+            try
             {
-                string? authorId = 
-                    await this.authorService.GetAuthorIdByUserIdAsync(userId);
+                if (!isUserAuthor)
+                {
+                    string? authorId =
+                        await this.authorService.GetAuthorIdByUserIdAsync(userId);
 
-                myArticles.AddRange(await this.articleService.AllByAuthorIdAsync(authorId!));
-            }
-            else 
-            { 
-                myArticles.AddRange(await this.articleService.AllByAuthorIdAsync(userId));
-            }
+                    myArticles.AddRange(await this.articleService.AllByAuthorIdAsync(authorId!));
+                }
+                else
+                {
+                    myArticles.AddRange(await this.articleService.AllByAuthorIdAsync(userId));
+                }
 
-            return View(myArticles);
+                return View(myArticles);
+            }
+            catch (Exception)
+            {
+                return this.GeneralError();                
+            }            
         }
 
         [HttpGet]
@@ -163,14 +176,21 @@ namespace NebulaNewsSystem.Web.Controllers
             {
                 this.TempData[ErrorMessage] = "You must become the author who published the article you want to edit!";
 
-                return this.RedirectToAction("Mine", "House");
+                return this.RedirectToAction("Mine", "Article");
             }
 
-            ArticleFormModel formModel = await this.articleService
-                .GetArticleForEditByIdAsync(id);
-            formModel.Categories = await this.categoryService.AllCategoriesAsync();
+            try
+            {
+                ArticleFormModel formModel = await this.articleService
+               .GetArticleForEditByIdAsync(id);
+                formModel.Categories = await this.categoryService.AllCategoriesAsync();
 
-            return this.View(formModel);      
+                return this.View(formModel);
+            }
+            catch (Exception)
+            {
+                return this.GeneralError();
+            }     
         }
 
         [HttpPost]
@@ -224,6 +244,14 @@ namespace NebulaNewsSystem.Web.Controllers
             }
 
             return this.RedirectToAction("Comment", "Article", new { id });
+        }
+
+        private IActionResult GeneralError()
+        {
+            this.TempData[ErrorMessage] =
+                    "Unexpected error occurred! Please try again later or contact administrator.";
+
+            return this.RedirectToAction("Index", "Home");
         }
     }
 }
