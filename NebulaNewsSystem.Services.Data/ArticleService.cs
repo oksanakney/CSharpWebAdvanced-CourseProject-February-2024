@@ -145,7 +145,7 @@ namespace NebulaNewsSystem.Services.Data
             IEnumerable<ArticleAllViewModel> allAuthorArticles = await this.dbContext
                 .Articles
                 .Include(au => au.Author)
-                .Where(a => a.Author.ReaderId == authorId)
+                .Where(a => a.Author.ReaderId.ToString() == authorId)
                 .Select(a => new ArticleAllViewModel()
                 {
                     Id = a.Id.ToString(),

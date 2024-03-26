@@ -12,7 +12,7 @@ using System.Reflection.Emit;
 namespace NebulaNewsSystem.Web.Data
 {
 
-    public class NebulaNewsDbContext : IdentityDbContext<ApplicationUser, IdentityRole<string>, string>
+    public class NebulaNewsDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
     {
         private readonly bool seedDb;
 
@@ -40,10 +40,10 @@ namespace NebulaNewsSystem.Web.Data
             //Assembly configAssembly = Assembly.GetAssembly(typeof(NebulaNewsDbContext)) ??
             //                          Assembly.GetExecutingAssembly();
             //builder.ApplyConfigurationsFromAssembly(configAssembly);
-            builder
-                 .Entity<ApplicationUser>()
-                 .Property(e => e.UserName)
-                 .ValueGeneratedOnAdd();
+            //builder
+            //     .Entity<ApplicationUser>()
+            //     .Property(e => e.UserName)
+            //     .ValueGeneratedOnAdd();
 
             builder.Entity<Author>()
                 .HasOne(a => a.User)

@@ -62,7 +62,7 @@ namespace NebulaNewsSystem.Services.Data
             {
                 PhoneNumber = model.PhoneNumber,
                 EmailAddress = model.EmailAddress,
-                ReaderId = userId
+                ReaderId = Guid.Parse(userId) // to check
             };
 
             await this.dbContext.Authors.AddAsync(newAuthor);
