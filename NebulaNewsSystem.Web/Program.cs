@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using NebulaNewsSystem.Data.Models;
 using NebulaNewsSystem.Web.Data;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
@@ -7,15 +8,15 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 string connectionString = 
     builder.Configuration.GetConnectionString("DefaultConnection");
 
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
+builder.Services.AddDbContext<NebulaNewsDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 {
     options.SignIn.RequireConfirmedAccount = true;
 })
     
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+    .AddEntityFrameworkStores<NebulaNewsDbContext>();
 
 builder.Services.AddControllersWithViews();
 
