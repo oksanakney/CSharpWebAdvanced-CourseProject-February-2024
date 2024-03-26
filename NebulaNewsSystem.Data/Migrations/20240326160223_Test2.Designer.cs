@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NebulaNewsSystem.Web.Data;
 
@@ -11,9 +12,10 @@ using NebulaNewsSystem.Web.Data;
 namespace NebulaNewsSystem.Web.Data.Migrations
 {
     [DbContext(typeof(NebulaNewsDbContext))]
-    partial class NebulaNewsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240326160223_Test2")]
+    partial class Test2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

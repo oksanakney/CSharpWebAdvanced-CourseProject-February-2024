@@ -26,7 +26,7 @@ namespace NebulaNewsSystem.Data.Models
         [Required]
         [MaxLength(ImageUrlMaxLength)]
         public string ImageUrl { get; set; } = null!;
-
+        public string? ApplicationUserId { get; set; }
         public int CategoryId { get; set; }
 
         [ForeignKey(nameof(CategoryId))]

@@ -18,9 +18,7 @@ namespace NebulaNewsSystem.Data.Models
 
         [ForeignKey(nameof(ArticleId))]
         public virtual Article Article { get; set; } = null!;
-        public string? UserId { get; set; }
-
-        [ForeignKey(nameof(UserId))]
+        public string? CommenterId { get; set; }        
         public virtual ApplicationUser? Commenter { get; set; }
 
         //public bool IsAnonymous { get; set; }

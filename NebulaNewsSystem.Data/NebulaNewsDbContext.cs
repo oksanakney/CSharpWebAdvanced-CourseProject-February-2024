@@ -40,15 +40,15 @@ namespace NebulaNewsSystem.Web.Data
             //Assembly configAssembly = Assembly.GetAssembly(typeof(NebulaNewsDbContext)) ??
             //                          Assembly.GetExecutingAssembly();
             //builder.ApplyConfigurationsFromAssembly(configAssembly);
-            //builder
-            //     .Entity<ApplicationUser>()
-            //     .Property(e => e.UserName)
-            //     .ValueGeneratedOnAdd();
+            builder
+                 .Entity<ApplicationUser>()
+                 .Property(e => e.UserName)
+                 .ValueGeneratedOnAdd();
 
             builder.Entity<Author>()
                 .HasOne(a => a.User)
                 .WithMany()
-                .HasForeignKey(a => a.UserId)
+                .HasForeignKey(a => a.ReaderId)
                 .OnDelete(DeleteBehavior.Restrict);            
 
             builder.ApplyConfiguration(new ArticleEntityConfiguration());           
