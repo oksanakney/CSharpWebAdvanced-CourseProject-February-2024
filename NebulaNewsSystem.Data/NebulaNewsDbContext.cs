@@ -12,7 +12,7 @@ using System.Reflection.Emit;
 namespace NebulaNewsSystem.Web.Data
 {
 
-    public class NebulaNewsDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
+    public class NebulaNewsDbContext : IdentityDbContext<ApplicationUser, IdentityRole<string>, string>
     {
         private readonly bool seedDb;
 
@@ -25,6 +25,8 @@ namespace NebulaNewsSystem.Web.Data
         public DbSet<Article> Articles { get; set; } = null!;
         public DbSet<Author> Authors { get; set; } = null!;
         public DbSet<Category> Categories { get; set; } = null!;
+        public DbSet<Weather> Weather { get; set; } = null!;
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; } = null!;
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -44,23 +46,10 @@ namespace NebulaNewsSystem.Web.Data
             //     .ValueGeneratedOnAdd();
 
             builder.Entity<Author>()
-                .HasOne(a => a.Reader)
+                .HasOne(a => a.User)
                 .WithMany()
-                .HasForeignKey(a => a.ReaderId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-
-            // Ensure that Comment entity is mapped
-            builder.Entity<Comment>();
-
-            // Configure the relationship between Comment and AspNetUsers
-            builder.Entity<Comment>()
-                .HasOne(c => c.Commenter)           // Comment has one Commenter
-                .WithMany(u => u.Comments)           // Commenter can have many Comments
-                .HasForeignKey(c => c.CommenterId)  // Foreign key property in Comment entity
-                .IsRequired(false)                  // Depending on your requirements
-                .OnDelete(DeleteBehavior.Restrict)  // Specify delete behavior if needed
-                .HasConstraintName("FK_Comment_AspNetUsers_CommenterId"); // Specify the constraint name
+                .HasForeignKey(a => a.UserId)
+                .OnDelete(DeleteBehavior.Restrict);            
 
             builder.ApplyConfiguration(new ArticleEntityConfiguration());           
             builder.ApplyConfiguration(new CommentEntityConfiguration());

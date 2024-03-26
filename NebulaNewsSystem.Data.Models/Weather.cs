@@ -1,7 +1,10 @@
-﻿namespace NebulaNewsSystem.Data.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace NebulaNewsSystem.Data.Models
 {
     public class Weather
     {
+        [Key]
         public int Id { get; set; }
         public DateTime Timestamp { get; set; }
         public string Description { get; set; } = null!;

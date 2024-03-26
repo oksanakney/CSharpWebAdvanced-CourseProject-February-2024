@@ -23,7 +23,7 @@ namespace NebulaNewsSystem.Data.Configurations.SeedCofiguration
                 Content = "Dobre e taka, triabva da se vkara malko disciplina v gimnazijata",
                 CreationDate = new DateTime(2024, 3, 14, 15, 45, 0),
                 ArticleId = Guid.Parse("49cde94c-3f90-4f95-8e91-a751aa2b7af4"),
-                CommenterId = Guid.Parse("247929cd-14da-4c78-bcc7-92fb93e300a1")
+                UserId = "247929cd-14da-4c78-bcc7-92fb93e300a1"
             };
             comments.Add(comment);
 
@@ -33,7 +33,7 @@ namespace NebulaNewsSystem.Data.Configurations.SeedCofiguration
                 Content = "emi za tova se praviat tolkova katastrofi, triabva da se vzemat merki",
                 CreationDate = new DateTime(2024, 3, 14, 12, 28, 0),
                 ArticleId = Guid.Parse("550f78bf-9c45-4fa1-9a1e-4af3a5192be6"),
-                CommenterId = Guid.Parse("20cd7080-3221-4b5e-96c9-f6ebd93555de")
+                UserId = "20cd7080-3221-4b5e-96c9-f6ebd93555de"
             };
             comments.Add(comment);
 
@@ -43,7 +43,7 @@ namespace NebulaNewsSystem.Data.Configurations.SeedCofiguration
                 Content = "Bravo na Gi4ka, da gi razkara oti stanali sa mnogo nagli",
                 CreationDate = new DateTime(2024, 3, 14, 16, 59, 0),
                 ArticleId = Guid.Parse("3c74cdaa-71b0-4789-89e0-93c72fd2e8a9"),
-                CommenterId = Guid.Parse("5c65b87d-ab20-4314-bf26-4c7dbcca0924")
+                UserId = "5c65b87d-ab20-4314-bf26-4c7dbcca0924"
             };
             comments.Add(comment);
 

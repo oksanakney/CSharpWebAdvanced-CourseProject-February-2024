@@ -19,7 +19,7 @@ namespace NebulaNewsSystem.Services.Data
         {
             bool result = await this.dbContext
                 .Authors
-                .AnyAsync(au => au.ReaderId.ToString() == userId);
+                .AnyAsync(au => au.UserId.ToString() == userId);
 
             return result;
         }
@@ -62,7 +62,7 @@ namespace NebulaNewsSystem.Services.Data
             {
                 PhoneNumber = model.PhoneNumber,
                 EmailAddress = model.EmailAddress,
-                ReaderId = Guid.Parse(userId)
+                UserId = userId
             };
 
             await this.dbContext.Authors.AddAsync(newAuthor);
@@ -73,7 +73,7 @@ namespace NebulaNewsSystem.Services.Data
         {
             Author? author = await this.dbContext
                 .Authors
-                .FirstOrDefaultAsync(a => a.ReaderId.ToString() == userId);
+                .FirstOrDefaultAsync(a => a.UserId.ToString() == userId);
             if (author == null)
             {
                 return string.Empty;

@@ -24,10 +24,10 @@ namespace NebulaNewsSystem.Data.Models
         [EmailAddress]
         public string EmailAddress { get; set; } = null!;
 
-        public Guid? ReaderId { get; set; }
+        public string UserId { get; set; } = null!;
 
-        [ForeignKey(nameof(ReaderId))]
-        public virtual ApplicationUser? Reader { get; set; }
+        [ForeignKey(nameof(UserId))]
+        public virtual ApplicationUser User { get; set; } = null!;
 
         public virtual ICollection<Article> Articles { get; set; }
     }
