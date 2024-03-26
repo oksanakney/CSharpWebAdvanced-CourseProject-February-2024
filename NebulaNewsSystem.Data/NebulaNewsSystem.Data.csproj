@@ -20,4 +20,8 @@
     <ProjectReference Include="..\NebulaNewsSystem.Data.Models\NebulaNewsSystem.Data.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>
