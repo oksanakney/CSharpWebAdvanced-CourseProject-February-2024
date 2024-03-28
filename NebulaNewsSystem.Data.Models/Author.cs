@@ -16,11 +16,7 @@ namespace NebulaNewsSystem.Data.Models
 
         [Required]
         [MaxLength(PhoneNumberMaxLength)]
-        public string PhoneNumber { get; set; } = null!;
-        public Guid UserId { get; set; }
-
-        [ForeignKey(nameof(UserId))]
-        public virtual ApplicationUser User { get; set; } = null!;
+        public string PhoneNumber { get; set; } = null!;       
 
         public ICollection<Article> WrittenArticles { get; set; }
         public ICollection<Comment> CommentsWrittenByAuthor { get; set; }

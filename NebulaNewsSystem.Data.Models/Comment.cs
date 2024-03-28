@@ -15,22 +15,19 @@ namespace NebulaNewsSystem.Data.Models
         public string Content { get; set; } = string.Empty;
         public DateTime DatePosted { get; set; }
 
-        public Guid UserId { get; set; }        
+        public Guid CommenterId { get; set; }        
 
-        [ForeignKey(nameof(UserId))]
-        public ApplicationUser User { get; set; } = null!;
+        [ForeignKey(nameof(CommenterId))]
+        public ApplicationUser Commenter { get; set; } = null!;
 
         public Guid AuthorId { get; set; }
 
         [ForeignKey(nameof(AuthorId))]
         public Author Author { get; set; } = null!;
 
-        public int ArticleId { get; set; }
+        public Guid ArticleId { get; set; }
 
         [ForeignKey(nameof(ArticleId))]
-        public Article Article { get; set; } = null!;   
-        
-
-        
+        public Article Article { get; set; } = null!;      
     }
 }

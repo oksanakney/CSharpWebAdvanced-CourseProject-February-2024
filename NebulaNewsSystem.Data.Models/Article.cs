@@ -34,10 +34,12 @@ namespace NebulaNewsSystem.Data.Models
         public string ImageUrl { get; set; } = string.Empty;
         public DateTime CreatedOn { get; set; }
         public bool IsPublished { get; set; }
+
         public Guid AuthorId { get; set; }
 
         [ForeignKey(nameof(AuthorId))]
-        public Author Author { get; set; } = null!;       
+        public Author Author { get; set; } = null!;
+        
         public int CategoryId { get; set; }
 
         [ForeignKey(nameof(CategoryId))]
